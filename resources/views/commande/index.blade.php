@@ -37,30 +37,37 @@
     <div class="form-group row">
       <label class="col-4">Produits</label>
       <div class="col-8">
+
         @foreach ($nom_produits as $nom_produit)
+
+        @php
+            $tableau = array ('produit' => 'nombre');
+
+        @endphp
+
+
             <div class="form-check">
 
 
-
-                <input class="form-check-input" type="checkbox" value="{{ $nom_produit -> id }}" id="flexCheckDefault" name="produit[]">
                 <label class="form-check-label" for="flexCheckDefault">
                 {{ $nom_produit -> nom_produit }}
-
                 <div class="form-group col-md-4">
-                    <input type="number" class="form-control" name="nombre[]" value="">
+                    <input type="number" class="form-control" name="tableau[{{ $nom_produit -> id }}]" value="">
                   </div>
                 </label>
-
             </div>
         @endforeach
         <span id="radioHelpBlock" class="form-text text-muted">Selectionner le(s) produit(s) vendus</span>
       </div>
     </div>
-    <input type="number" class="form-control" name="000" value="0">
+
 
     <div class="form-group row">
       <div class="offset-4 col-8">
         <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+      </div>
+      <div class="offset-4 col-8">
+        <button name="reset" type="reset" class="btn btn-primary">Reset</button>
       </div>
     </div>
   </form>
@@ -68,7 +75,7 @@
 
 
 
-  <p> Je peux écrire aprés ? </p>
+
 
 @endsection
 

@@ -10,7 +10,9 @@ use App\Http\Requests\ContactRequest;
 
 use App\Models\Commandes;
 use App\Models\DetailCommande;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Redirect;
+use PhpParser\Node\Expr\Cast\Array_;
 use Symfony\Component\Console\Input\Input;
 
 class CommandeController extends Controller
@@ -36,16 +38,13 @@ class CommandeController extends Controller
 
     public function store(Request $request){
 
-
-
         $table_commande = new Commandes();
 
         // Récupération donnée Commandes via formulaire :
         $table_commande->commercial_id=$request->select_commercial;
         $table_commande->client_id=$request->select_client;
 
-        // Save dans la table Commande
-        //$test->save();
+       // $table_commande->save();
 
         // Récupération données DétailsCommande via formulaire:
         $table_detail = new DetailCommande();
@@ -53,12 +52,12 @@ class CommandeController extends Controller
         $table_detail->produit_id = $request->produit;
         $table_detail->quantite = $request->nombre;
 
+        //$table_detail->save();
 
-         $name = $request->all();
-
-         dd($name);
-
-
+        $tableau = $request->tableau;
+        $nombre = $request->nombre;
+        dd($tableau);
+        //dd($nombre);
 
 
     }
