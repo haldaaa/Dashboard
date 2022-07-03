@@ -13,27 +13,16 @@ class CommerciauxController extends Controller
     public function index()
     {
 
-        $a = 5;
-        $b = 10;
-        $resultat = $a + $b;
+
         $commerciaux = DB::select('select * from commerciaux');
 
         return view('commerciaux', [
-            'commerciaux' => $commerciaux,
-            'resultat' => $resultat
+            'commerciaux' => $commerciaux
+
         ]);
     }
 
 
-    public function calcul()
-    {
-        $a = 5;
-        $b = 10;
-        $resultat = $a + $b;
 
-        return view('commerciaux', [
-            'resultat' => $resultat
-        ]);
-    }
 
 }

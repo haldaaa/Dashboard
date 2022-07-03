@@ -17,11 +17,8 @@ Il y'aura <b>5 pages</b> : </br> </br>
 <h2> Plan du projet  </h2> </br> </br>
 
 <p> A faire : </br>  </br>
-    - Formulaire pour ajouter une commande  </br>
-    - Faire page clients (same que page commerciaux)  </br>
-    - Faire page article </br>
-    - Faire formulaire pour ajout commande  </br>
-    - Comment faire si un commercial vend plusieurs types de produits ? </br>
+    - Une page par commerciaux avec toutes ses ventes </br>
+    - Une page par entreprise / client avec toute ses commandes </br>
 </p>
 
 

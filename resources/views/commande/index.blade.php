@@ -10,11 +10,11 @@
     @csrf
 
     <div class="form-group row">
-        <label for="select" class="col-4 col-form-label">Nom commerciaul</label>
+        <label for="select" class="col-4 col-form-label">Nom commercial</label>
         <div class="col-8">
           <select id="select" name="select_commercial" class="custom-select selectname" aria-describedby="selectHelpBlock">
               @foreach ($nom_commercial  as $nom )
-                  <option value="{{ $nom -> id }} ">{{ $nom -> nom }} </option>
+                  <option value="{{ $nom -> commercial }} ">{{ $nom -> nom }} </option>
               @endforeach
           </select>
           <span id="selectHelpBlock" class="form-text text-muted">Renseignez le nom du client selon la liste enrengistré</span>
@@ -27,7 +27,7 @@
       <div class="col-8">
         <select id="select" name="select_client" class="custom-select" aria-describedby="selectHelpBlock">
             @foreach ($nom_clients  as $nom )
-                <option value="{{ $nom -> id }} ">{{ $nom -> nom_entreprise }} </option>
+                <option value="{{ $nom -> client }} ">{{ $nom -> nom_entreprise }} </option>
             @endforeach
         </select>
         <span id="selectHelpBlock" class="form-text text-muted">Renseignez le nom du client selon la liste enrengistré</span>
@@ -63,17 +63,20 @@
 
 
     <div class="form-group row">
-      <div class="offset-4 col-8">
+      <div class="offset-2 col-1">
         <button name="submit" type="submit" class="btn btn-primary">Submit</button>
       </div>
-      <div class="offset-4 col-8">
+      <div class="offset-2 col-1">
         <button name="reset" type="reset" class="btn btn-primary">Reset</button>
       </div>
     </div>
   </form>
+  @if (session('succes'))
+  <div class="alert alert-succes">
+   <p>  {{ session('succes')}} </p>
+  </div>
 
-
-
+@endif
 
 
 

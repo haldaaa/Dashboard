@@ -9,7 +9,7 @@
       <h5 class="card-title"> {{  $nom->nom }}    </h5>
       <p class="card-text">Secteur : {{ $nom->ville }}</p>
       <p class="card-text">Nombre ventes : {{ $nom->nbre_commande }}</p>
-      <a href="#" class="btn btn-primary">Profil id : {{ $nom->id }} </a>
+      <a href="#" class="btn btn-primary">Profil id : {{ $nom->commercial }} </a>
     </div>
   </div>
 

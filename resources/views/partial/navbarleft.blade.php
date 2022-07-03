@@ -12,7 +12,7 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ route('commande') }} ">
               <span data-feather="file" class="align-text-bottom"></span>
-              Commandes
+              Passer une commande
             </a>
           </li>
           <li class="nav-item">
@@ -26,6 +26,11 @@
               <span data-feather="users" class="align-text-bottom"></span>
               Liste des clients
             </a>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('commande-liste') }} ">
+                  <span data-feather="shopping-cart" class="align-text-bottom"></span>
+                  Listes des commandes
+                </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ route('commerciaux') }}">

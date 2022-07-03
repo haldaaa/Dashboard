@@ -40,4 +40,6 @@ Route::get('/commande', 'CommandeController@index') ->name('commande');
 
 Route::post('/commande', 'CommandeController@store')->name('commande-store');
 
-Route::get('/commande2', 'CommandeController@coucou');
+Route::get('/commande-liste', 'CommandeController@liste')->name('commande-liste');
+
+Route::get('/coucou', 'CommandeController@coucou');
