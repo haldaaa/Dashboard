@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('myindex');
 });
 
 
@@ -42,4 +42,8 @@ Route::post('/commande', 'CommandeController@store')->name('commande-store');
 
 Route::get('/commande-liste', 'CommandeController@liste')->name('commande-liste');
 
-Route::get('/coucou', 'CommandeController@coucou');
+
+Route::get('/test', function (){
+
+    return view('test');
+});

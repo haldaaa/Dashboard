@@ -22,18 +22,16 @@ class CommandeController extends Controller
     public function index()
     {
 
+        // Pensez a ranger tout les appels en base dans les model correspondant (voir fonction liste)
         $nom_produits = DB::select('select * from produits');
         $nom_clients  = DB::select('select * from clients');
         $nom_commercial = DB::select('select * from commerciaux');
-
-      //  $commandes = DB::select('select * from details_commande');
 
 
         return View('commande.index', [
             'nom_produits' => $nom_produits,
             'nom_clients' => $nom_clients,
             'nom_commercial' => $nom_commercial,
-           // 'commandes' => $commandes
         ]);
     }
 
@@ -67,27 +65,18 @@ class CommandeController extends Controller
                $table_detail->save();
             }
 
-        // Ne marche pas car renvoie un tableau:
-       // $nom_client = DB::select("SELECT nom FROM commerciaux WHERE commercial = '$request->select_commercial' ");
 
+        // On incrémente le nombre de commande du Commercial
+        $update_commande = Commerciaux::find("$request->select_commercial");
+        $update_commande->nbre_commande = $update_commande->nbre_commande + 1 ;
 
+        // On sauvegarde le nom du commercial pour le message succes a la fin d'une commande réussis
+        $nom_commercial = $update_commande->nom;
 
-       $nom_client = DB::table('commerciaux')
-       ->select('nom')
-       ->where("commercial", '=' , "$request->select_commercial" )
-       ->get();
+        // On update la table Commerciaux (on incrémente ici le nombre de commande)
+        $update_commande->save();
 
-
-
-
-       dd($nom_client);
-
-
-
-
-
-
-        return back()->with('succes' , 'La commande de ' . $nom_client . 'a été ajouté');
+        return back()->with('succes' , 'La commande de ' . $nom_commercial. 'a été ajouté');
 
     }
 
@@ -96,18 +85,18 @@ class CommandeController extends Controller
     {
 
 
+        $test = new Commerciaux;
+        $liste =$test-> ohOui();
 
-        $liste = DB::table('commandes')
-        ->join('commerciaux', 'commercial' , '=' , 'commercial_id')
-        ->join('clients', 'client' , '=' , 'client_id' )
-        ->take(80)
-        ->get();
+        dd($liste);
 
         return View('commande.commande-liste' , [
             'liste' => $liste
         ]);
 
     }
+
+
 
     public function coucou()
     {

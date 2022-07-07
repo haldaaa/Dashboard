@@ -2,25 +2,25 @@
 
 @section ('contenu')
 
- @foreach($liste as $commandes)
- {
-    <div class="card col-md-3">
-        <img src="{{ $commandes->image }}" class="card-img-top" alt="...">
-        <div class="card-body">
-        <h5 class="card-title"> {{  $commandes->nom }}    </h5>
-        <p class="card-text">Secteur : {{ $commandes->ville }}</p>
-        <p class="card-text">Nombre ventes : {{ $commandes->nbre_commande }}</p>
-        <a href="#" class="btn btn-primary">Profil id : {{ $commandes->commercial }} </a>
-        </div>
-    </div>
- }
+
+<table class="table ">
+    <thead>
+      <tr>
+
+        <th scope="col">Commercial </th>
+        <th scope="col">Nombre ventes</th>
+        <th scope="col">Bénéfice</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+@foreach ($liste as $data)
+        <td>{{ $data->nom }}</td>
+        <td> {{ $data->nbre_commande}} </td>
+        <td>50</td>
+      </tr>
 @endforeach
+    </tbody>
 
-    <p> Yo </p>
-    <div id="app">
-
-       <p v-if="seen"> Oui </p>
-        @{{ message }}
-      </div>
-
+  </table>
 @endsection

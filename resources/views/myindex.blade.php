@@ -17,8 +17,9 @@ Il y'aura <b>5 pages</b> : </br> </br>
 <h2> Plan du projet  </h2> </br> </br>
 
 <p> A faire : </br>  </br>
-    - Une page par commerciaux avec toutes ses ventes </br>
+    - Une page par commerciaux avec toutes ses ventes : faire un tableau qui liste toutes les commandes et bénéfices </br>
     - Une page par entreprise / client avec toute ses commandes </br>
+    - Rajouter un menu déroulant : Commandes : Toutes les commandes / Commandes par commerciaux par exemple </br>
 </p>
 
 

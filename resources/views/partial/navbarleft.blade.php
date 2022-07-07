@@ -38,6 +38,7 @@
               Liste des commerciaux
             </a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="#">
               <span data-feather="layers" class="align-text-bottom"></span>
@@ -46,4 +47,8 @@
           </li>
         </ul>
       </div>
+
+
+    </div>
+
     </nav>
