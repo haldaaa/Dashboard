@@ -86,9 +86,11 @@ class CommandeController extends Controller
 
 
         $test = new Commerciaux;
-        $liste =$test-> ohOui();
+        $liste =$test-> allCommande();
 
-        dd($liste);
+      //  dd($liste);
+
+
 
         return View('commande.commande-liste' , [
             'liste' => $liste

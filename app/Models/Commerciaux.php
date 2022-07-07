@@ -21,15 +21,18 @@ class Commerciaux extends Model
     ];
 
 
-    public function ohOui()
+    public function allCommande()
     {
-        $liste = DB::table('commandes')
-        ->join('commerciaux', 'commercial' , '=' , 'commercial_id')
-        ->join('clients', 'client' , '=' , 'client_id' )
+        $liste = DB::table('commerciaux')
         ->get();
 
         return($liste);
     }
 
+
+    public function fonctionTest($id)
+    {
+        $data = DB::table('comman');
+    }
 
 }
