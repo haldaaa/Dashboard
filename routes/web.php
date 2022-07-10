@@ -42,8 +42,4 @@ Route::post('/commande', 'CommandeController@store')->name('commande-store');
 
 Route::get('/commande-liste', 'CommandeController@liste')->name('commande-liste');
 
-
-Route::get('/test', function (){
-
-    return view('test');
-});
+Route::get('/test', 'CommandeController@coucou');

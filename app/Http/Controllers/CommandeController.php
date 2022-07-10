@@ -11,6 +11,7 @@ use App\Http\Requests\ContactRequest;
 use App\Models\Commandes;
 use App\Models\Commerciaux;
 use App\Models\DetailCommande;
+use App\Models\Produits;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Redirect;
@@ -103,27 +104,10 @@ class CommandeController extends Controller
     public function coucou()
     {
 
-        // Ne renvoie rien :
-       // return "Controller je test";
-       // Peut etre qu'il faut que je revoie ma table, mettre commercial_id dans detail commandes
-       // Le code ci dessous marche, mais me renvoie trop de résultat car commercial_id est appelé plusieurs fois
-         $yes2 = DB::table('commandes')
-        ->join('commerciaux', 'commercial' , '=' , 'commercial_id')
-        ->join('clients', 'client' , '=' , 'client_id' )
-        ->take(80)
-        ->get();
+        //$product = getAllPriceAndProduct();
+        $pi = allCommande();
 
-
-
-
-        $nom_client = DB::table('commerciaux')
-        ->select('nom')
-        ->where("commercial", '=' , "2" )
-        ->get();
-
-        $nom_client = $nom_client->pluck('nom');
-
-        return(print_r($nom_client['nom']));
+        dd($pi);
 
 
     }

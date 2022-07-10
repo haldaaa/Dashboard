@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Produits extends Model
 {
@@ -20,5 +21,14 @@ class Produits extends Model
     public function detailcommande()
     {
         return $this->belongsTo(DetailCommande::class, 'produits_id');
+    }
+
+    public function getAllPriceAndProduct()
+    {
+
+        $data = DB::table('produits')
+        ->get();
+
+        return($data);
     }
 }
