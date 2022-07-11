@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ContactRequest;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 use App\Models\Commandes;
 use App\Models\Commerciaux;
 use App\Models\DetailCommande;
 use App\Models\Produits;
+use Faker\Factory as FakerFactory;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Redirect;
@@ -51,6 +53,7 @@ class CommandeController extends Controller
         // On récupére le tableau dans notre vue
         $tableau = $request->tableau;
 
+
         // On boucle sur le tableau, en indiquant de continuer lorsque la quantité est = a 0
          foreach($tableau as $produit_id => $quantite)
             {
@@ -58,6 +61,12 @@ class CommandeController extends Controller
                 $table_detail->produit_id = $produit_id;
                 $table_detail->quantite = $quantite;
                 $table_detail->commande_id = $table_commande->id;
+
+        // On créé un objet produit pour récupéré le prix du produit
+                $produitObjet = Produits::find("$produit_id");
+                $priceProduit = $produitObjet->prix;
+                
+                $table_detail->sous_total = $priceProduit * $quantite;
 
                 if($quantite == 0)
                 {
@@ -86,11 +95,9 @@ class CommandeController extends Controller
     {
 
 
+        // Ici on récupére toutes les commandes via la fonction créé dans me model Commerciaux
         $test = new Commerciaux;
         $liste =$test-> allCommande();
-
-      //  dd($liste);
-
 
 
         return View('commande.commande-liste' , [
@@ -104,10 +111,42 @@ class CommandeController extends Controller
     public function coucou()
     {
 
-        //$product = getAllPriceAndProduct();
-        $pi = allCommande();
+        
+        // Test et autres 
 
-        dd($pi);
+
+        // Ici on parcours un tableau de tableau
+        $test = new Produits;
+        $produits = $test-> getAllPriceAndProduct();
+        
+        foreach ($produits as $clef => $produit)
+        {
+            echo "Valeur clef :" . $clef . "</br>";
+
+            foreach ($produit as $carac => $valeur)
+            {
+                echo $carac . " : " . $valeur . "</br>";
+            }
+            echo "</br>";
+        }
+     
+        $thatid = 4;
+        // Méthode la plus simple pour récupéré la valeurd'une table dont on connait l'id, ici on veut recuperer le prix d'un produit.
+        $test2 = Produits::find("$thatid");
+        $prix = $test2->prix;
+
+       // Experimentation de la librarie faker
+
+        $fakeuser = FakerFactory::create();
+        $name = $fakeuser->name();
+       // dd($name);
+        
+
+       $data = DB::table('commandes')
+        ->join('details_commande' , 'commande_id' , 'commandes.id')
+        ->get();
+
+        dd($data);
 
 
     }

@@ -9,6 +9,10 @@ $(document).ready(function() {
         alert("You have selected the country - " + selectedCountry);
     });
 
+
+    if (!$("#checkboxID").is(":checked")) {
+      alert('Merci de selectionner un produit');
+  }
   });
 
 

@@ -31,4 +31,14 @@ class Produits extends Model
 
         return($data);
     }
+
+
+    public function produitPrice($id) 
+    {
+        $data = DB::table('produits')
+        ->select('prix')
+        ->where('id' , '=' , "2")
+        ->get();
+        
+    }
 }
