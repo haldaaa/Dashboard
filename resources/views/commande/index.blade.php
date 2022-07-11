@@ -71,6 +71,9 @@
       </div>
     </div>
   </form>
+
+ 
+
   @if (session('succes'))
   <div class="alert alert-succes">
    <p>  {{ session('succes')}} </p>

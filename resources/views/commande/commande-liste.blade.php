@@ -1,5 +1,6 @@
 @extends ('layout')
 
+
 @section ('contenu')
 
 
@@ -17,10 +18,14 @@
 @foreach ($liste as $data)
         <td>{{ $data->nom }}</td>
         <td> {{ $data->nbre_commande}} </td>
-        <td>50</td>
+        <td> {{ $data ->total_vente }}</td>
       </tr>
 @endforeach
     </tbody>
 
   </table>
+  <div>
+    <canvas id="myChart"> <p> CACA </p> </canvas>
+  </div>
+
 @endsection

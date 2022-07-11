@@ -21,6 +21,7 @@ class Commerciaux extends Model
     ];
 
 
+    // Recupére toutes les commandes de tout les commerciaux
     public function allCommande()
     {
         $liste = DB::table('commerciaux')
@@ -30,9 +31,28 @@ class Commerciaux extends Model
     }
 
 
-    public function fonctionTest($id)
-    {
-        $data = DB::table('comman');
-    }
+    // Récupere le bénéfice total d'un commercial
+   public static function totalCommande($commercial)
+   {
+    
+    $data = DB::table('commandes')
+     ->where('commercial_id' , '=' , "$commercial")
+     ->join('details_commande' , 'commande_id' , 'commandes.id')
+     ->sum('sous_total');
+
+     return($data);
+   }
+
+   public function jeTest()
+   {
+    $data = DB::table('commandes')
+    ->select('commercial_id as CommercialID' , 'sous_total AS SousTotal')
+    ->join('details_commande' , 'commande_id' , 'commandes.id')
+    ->get();
+    
+
+    return($data);
+
+   }
 
 }

@@ -23,7 +23,12 @@ Il y'aura <b>5 pages</b> : </br> </br>
 
     MAJ : 11/08/2022 : </br>
     - Faire une verification formulaire : verifié qu'on rentre des chiffres et qu'on rentre au moins un produit : soit on rend l'input Valider impossible
-    a cliquer, soit on fait autrement
+    a cliquer, soit on fait autrement. </br>
+    - Générer une page par commercial avec toutes ses ventes </br> 
+    - Dans liste de produit, voir le produit le plus vendu </br>
+    - But ultime : générer une instance du site : commerciaux, clients, produits et ventes. </br>
+    - Intégrer Js Charts </br>
+    
 
 </p>
 

@@ -40,11 +40,12 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="layers" class="align-text-bottom"></span>
-              Integrations
+            <a class="nav-link" href="{{ route ('delete-all') }}">
+              <span data-feather="layers" class="align-text-bottom" title="je suis le title"></span>
+              Reset
             </a>
           </li>
+
         </ul>
       </div>
 

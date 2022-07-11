@@ -39,6 +39,9 @@ class CommandeController extends Controller
     }
 
 
+
+    // Fonction qui enrengistre une commande dans les tables: Commandes, Details commandes et commerciaux.
+
     public function store(Request $request){
 
         $table_commande = new Commandes();
@@ -65,6 +68,7 @@ class CommandeController extends Controller
         // On créé un objet produit pour récupéré le prix du produit
                 $produitObjet = Produits::find("$produit_id");
                 $priceProduit = $produitObjet->prix;
+
                 
                 $table_detail->sous_total = $priceProduit * $quantite;
 
@@ -80,6 +84,9 @@ class CommandeController extends Controller
         $update_commande = Commerciaux::find("$request->select_commercial");
         $update_commande->nbre_commande = $update_commande->nbre_commande + 1 ;
 
+        // Ici on incrémente le total des bénéfices du commercial 
+        $update_commande->total_vente = $update_commande->total_vente + $update_commande->totalCommande("$request->select_commercial");
+
         // On sauvegarde le nom du commercial pour le message succes a la fin d'une commande réussis
         $nom_commercial = $update_commande->nom;
 
@@ -91,6 +98,7 @@ class CommandeController extends Controller
     }
 
 
+    // Fonction pour la page commande_liste. Affiche la liste des commerciaux et leur bénéfices totaux.
     public function liste()
     {
 
@@ -108,6 +116,24 @@ class CommandeController extends Controller
 
 
 
+    public function deleteAll()
+    {
+       
+        // Methode très sale car je fais appel a 2 requêtes et en plus la table commerciaux n'est pas reset proprement non plus. A étudier.
+        // La méthode marchait plus ou moins ( les données de la tables commandes et details commande étaient supprimé mais gros bordel sur les routes aprés)
+        // La méthode marche aprés avoir utilisé return back.  Par contre la table commerciaux nest pas delete, on a tjrs le nombre de bénéfice et nombre de commande.
+
+        DB::statement("SET foreign_key_checks=0");
+        Commandes::truncate();
+        DetailCommande::truncate();
+        DB::table('commerciaux')->update(['total_vente' => 0 , 'nbre_commande' => 0]);
+        DB::statement("SET foreign_key_checks=1");
+
+        return back();
+    }
+
+
+    // Fonction test
     public function coucou()
     {
 
@@ -141,12 +167,12 @@ class CommandeController extends Controller
         $name = $fakeuser->name();
        // dd($name);
         
+       $benefice = new Commerciaux;
+       $moula = $benefice->jeTest();
 
-       $data = DB::table('commandes')
-        ->join('details_commande' , 'commande_id' , 'commandes.id')
-        ->get();
-
-        dd($data);
+       dd($moula);
+    
+       
 
 
     }
