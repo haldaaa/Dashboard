@@ -31,8 +31,15 @@ Il y'aura <b>5 pages</b> : </br> </br>
     
 
 </p>
+@if (session('succes'))
+<div class="alert alert-succes">
+ <p>  {{ session('succes')}}  </p>
+</div>
+@else 
+<p> No !! </p>
+
+@endif
 
 
 
-</p>
 @endsection

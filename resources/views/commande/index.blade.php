@@ -41,7 +41,7 @@
         @foreach ($nom_produits as $nom_produit)
 
         @php
-            $tableau = array ('produit' => 'nombre');
+        //    $tableau = array ('produit' => 'nombre');
 
         @endphp
 

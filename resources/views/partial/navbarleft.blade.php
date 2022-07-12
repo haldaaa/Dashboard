@@ -41,8 +41,15 @@
 
           <li class="nav-item">
             <a class="nav-link" href="{{ route ('delete-all') }}">
-              <span data-feather="layers" class="align-text-bottom" title="je suis le title"></span>
-              Reset
+              <span data-feather="layers" class="align-text-bottom" title="Reset Commerciaux et Clients"></span>
+              Reset B&S
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route ('createVente') }}">
+              <span data-feather="layers" class="align-text-bottom" title="Créé Commerciaux et Clients"></span>
+              Create B&S
             </a>
           </li>
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppController;
 use App\Http\Controllers\CommandeController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,7 @@ Route::get('produits', 'ProduitsController@index') ->name('produits');
 
 
 
+// Page commande :
 
 Route::get('/commande', 'CommandeController@index') ->name('commande');
 
@@ -42,6 +44,14 @@ Route::post('/commande', 'CommandeController@store')->name('commande-store');
 
 Route::get('/commande-liste', 'CommandeController@liste')->name('commande-liste');
 
-Route::get('/balais' , 'CommandeController@deleteAll')->name('delete-all');
+
 
 Route::get('/test', 'CommandeController@coucou');
+
+
+
+// Instanciation de l'application :
+Route::get('/balais' , 'AppController@deleteAll')->name('delete-all');
+Route::get('/balais2', 'AppController@createBuyerAndSeller')->name('createBandS');
+
+Route::get('/balais3', 'AppController@generateSell')->name('createVente');

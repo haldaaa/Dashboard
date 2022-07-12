@@ -54,13 +54,14 @@ class CommandeController extends Controller
         $table_commande->save();
 
         // On récupére le tableau dans notre vue
-        $tableau = $request->tableau;
+      //  $tableau = $request->tableau;
 
 
         // On boucle sur le tableau, en indiquant de continuer lorsque la quantité est = a 0
-         foreach($tableau as $produit_id => $quantite)
+         foreach($request->tableau as $produit_id => $quantite)
             {
                 $table_detail = new DetailCommande();
+                
                 $table_detail->produit_id = $produit_id;
                 $table_detail->quantite = $quantite;
                 $table_detail->commande_id = $table_commande->id;
@@ -116,22 +117,12 @@ class CommandeController extends Controller
 
 
 
-    public function deleteAll()
-    {
-       
-        // Methode très sale car je fais appel a 2 requêtes et en plus la table commerciaux n'est pas reset proprement non plus. A étudier.
-        // La méthode marchait plus ou moins ( les données de la tables commandes et details commande étaient supprimé mais gros bordel sur les routes aprés)
-        // La méthode marche aprés avoir utilisé return back.  Par contre la table commerciaux nest pas delete, on a tjrs le nombre de bénéfice et nombre de commande.
+  
 
-        DB::statement("SET foreign_key_checks=0");
-        Commandes::truncate();
-        DetailCommande::truncate();
-        DB::table('commerciaux')->update(['total_vente' => 0 , 'nbre_commande' => 0]);
-        DB::statement("SET foreign_key_checks=1");
 
-        return back();
-    }
 
+
+ 
 
     // Fonction test
     public function coucou()

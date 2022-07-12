@@ -41,4 +41,9 @@ class Produits extends Model
         ->get();
         
     }
+
+    public function nom_produit()
+    {
+        return $this->nom_produit;
+    }
 }
