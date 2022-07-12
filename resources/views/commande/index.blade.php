@@ -17,7 +17,7 @@
                   <option value="{{ $nom -> commercial }} ">{{ $nom -> nom }} </option>
               @endforeach
           </select>
-          <span id="selectHelpBlock" class="form-text text-muted">Renseignez le nom du client selon la liste enrengistré</span>
+          <span id="selectHelpBlock" class="form-text text-muted">Renseignez le nom du commercial selon la liste enrengistré</span>
         </div>
       </div>
 
@@ -40,19 +40,11 @@
 
         @foreach ($nom_produits as $nom_produit)
 
-        @php
-        //    $tableau = array ('produit' => 'nombre');
-
-        @endphp
-
-
             <div class="form-check">
-
-
                 <label class="form-check-label" for="flexCheckDefault">
                 {{ $nom_produit -> nom_produit }}
                 <div class="form-group col-md-4">
-                    <input type="number" class="form-control" name="tableau[{{ $nom_produit -> id }}]" value="">
+                    <input type="number" class="form-control checkbox" name="tableau[{{ $nom_produit -> id }}]" value="0" >
                   </div>
                 </label>
             </div>
@@ -64,7 +56,7 @@
 
     <div class="form-group row">
       <div class="offset-2 col-1">
-        <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+        <button name="submit" type="submit" class="btn btn-primary disabled" id="submitbutton">Submit</button>
       </div>
       <div class="offset-2 col-1">
         <button name="reset" type="reset" class="btn btn-primary">Reset</button>

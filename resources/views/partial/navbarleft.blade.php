@@ -47,9 +47,16 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="{{ route ('createVente') }}">
+            <a class="nav-link" href="{{ route ('createBandS') }}">
               <span data-feather="layers" class="align-text-bottom" title="Créé Commerciaux et Clients"></span>
               Create B&S
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route ('createVente') }}">
+              <span data-feather="layers" class="align-text-bottom" title="Créé Commerciaux et Clients"></span>
+              Create sells
             </a>
           </li>
 

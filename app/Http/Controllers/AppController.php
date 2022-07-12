@@ -62,65 +62,80 @@ class AppController extends Controller
       public function generateSell()
       {
 
-        // On selectionne un commercial au hasard
-        $randomCommercial = DB::table('commerciaux')
-        ->inRandomOrder()
-        ->first();
+        $randomCommande = rand(1,9);
 
-       // On selectionne un client au hasard
-        $randomClient = DB::table('clients')
-        ->inRandomOrder()
-        ->first();        
-       
-        // On selectionne un ou plusieurs produits (plus chaud)
-        // On utilise limit pour générer aléatoirement le nombre de produits
-        $randProduct = rand(1,4);
-        $randomProduct = DB::table('produits')
-        ->inRandomOrder()
-        ->limit("$randProduct")
-        ->get();
+        for($i=1 ; $i < $randomCommande ; $i++)
+        { 
+          // On selectionne un commercial au hasard
+          $randomCommercial = DB::table('commerciaux')
+          ->inRandomOrder()
+          ->first();
+
+        // On selectionne un client au hasard
+          $randomClient = DB::table('clients')
+          ->inRandomOrder()
+          ->first();        
+        
+          // On selectionne un ou plusieurs produits (plus chaud)
+          // On utilise limit pour générer aléatoirement le nombre de produits
+          $randProduct = rand(1,4);
+          $randomProduct = DB::table('produits')
+          ->inRandomOrder()
+          ->limit("$randProduct")
+          ->get();
+
+          
+          $table_commande = new Commandes();
+          $table_commande->commercial_id = $randomCommercial->commercial;
+          $table_commande->client_id = $randomClient->client;
+
+          $table_commande->save();
+
 
         
-        $table_commande = new Commandes();
-        $table_commande->commercial_id = $randomCommercial->commercial;
-        $table_commande->client_id = $randomClient->client;
 
-        $table_commande->save();
+          foreach($randomProduct as $tableau => $valeur)
+          {
 
+              $table_detail = new DetailCommande();
 
-       
+              $table_detail->produit_id = $valeur->id;
+              $table_detail->quantite = rand(1,99);
+              $table_detail->commande_id = $table_commande->id;
 
-        foreach($randomProduct as $tableau => $valeur)
-        {
+              // On créé un objet produit pour récupéré le prix du produit
+              $produitObjet = Produits::find("$valeur->id");
+              $priceProduit = $produitObjet->prix;
+
+              $table_detail->sous_total = $priceProduit * $table_detail->quantite;
+
+              $table_detail->save();
         
-            echo $valeur->nom_produit  . "</br>";
 
-            $table_detail = new DetailCommande();
+          }
 
-            $table_detail->produit_id = $valeur->id;
-            $table_detail->quantite = rand(1,99);
-            $table_detail->commande_id = $table_commande->id;
+          // On incrémente le nombre de commande du Commercial
+          $update_commande = Commerciaux::find("$randomCommercial->commercial");
+          $update_commande->nbre_commande = $update_commande->nbre_commande + 1;
 
-            // On créé un objet produit pour récupéré le prix du produit
-             $produitObjet = Produits::find("$valeur->id");
-             $priceProduit = $produitObjet->prix;
+          // Ici on incrémente le total des bénéfices du commercial 
+          $update_commande->total_vente = $update_commande->total_vente + $update_commande->totalCommande("$randomCommercial->commercial");
 
-             $table_detail->sous_total = $priceProduit * $table_detail->quantite;
-
-             $table_detail->save();
-      
-
+          $update_commande->save();
+          
         }
 
-         // On incrémente le nombre de commande du Commercial
-        $update_commande = Commerciaux::find("$randomCommercial->commercial");
-        $update_commande->nbre_commande = $update_commande->nbre_commande + 1;
+        // Bug que je ne comprend pas : ici quand je fais un return sur commande liste, j'ai une erreur car liste n'est pas définis,
+        // list est définis dans le controller CommandeController. alors je refais l'appel ici comme ca no soucis.
+        $test = new Commerciaux;
+        $liste =$test-> allCommande();
 
-        // Ici on incrémente le total des bénéfices du commercial 
-        $update_commande->total_vente = $update_commande->total_vente + $update_commande->totalCommande("$randomCommercial->commercial");
 
-        $update_commande->save();
-        
-      }
+        return View('commande.commande-liste' , [
+            'liste' => $liste
+        ]);
+    }
+
+
 
 }

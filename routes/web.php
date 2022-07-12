@@ -53,5 +53,9 @@ Route::get('/test', 'CommandeController@coucou');
 // Instanciation de l'application :
 Route::get('/balais' , 'AppController@deleteAll')->name('delete-all');
 Route::get('/balais2', 'AppController@createBuyerAndSeller')->name('createBandS');
-
 Route::get('/balais3', 'AppController@generateSell')->name('createVente');
+
+
+// Graphique
+
+Route::get('/chart' , 'ChartController@index')->name('chart-index');
