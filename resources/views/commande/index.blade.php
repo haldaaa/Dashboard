@@ -56,7 +56,7 @@
 
     <div class="form-group row">
       <div class="offset-2 col-1">
-        <button name="submit" type="submit" class="btn btn-primary disabled" id="submitbutton">Submit</button>
+        <button name="submit" type="submit" class="btn btn-primary " id="submitbutton">Submit</button>
       </div>
       <div class="offset-2 col-1">
         <button name="reset" type="reset" class="btn btn-primary">Reset</button>

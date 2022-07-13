@@ -40,6 +40,13 @@
           </li>
 
           <li class="nav-item">
+            <a class="nav-link" href="{{ route ('stats') }}">
+              <span data-feather="layers" class="align-text-bottom" title="Statistiques"></span>
+              Statistiques
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a class="nav-link" href="{{ route ('delete-all') }}">
               <span data-feather="layers" class="align-text-bottom" title="Reset Commerciaux et Clients"></span>
               Reset B&S

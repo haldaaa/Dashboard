@@ -4,36 +4,32 @@
 
 
 @section ('contenu')
-<table class="table ">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Lorem</th>
-        <th scope="col">Ipsum</th>
-        <th scope="col">Dolor</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Sit</td>
-        <td>Amet</td>
-        <td>Consectetur</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Adipisicing</td>
-        <td>Elit</td>
-        <td>Sint</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Hic</td>
-        <td>Fugiat</td>
-        <td>Temporibus</td>
-      </tr>
-    </tbody>
 
-  </table>
+
+<p> Page de test </p>
+<canvas id="myChart" width="400" height="400"></canvas>
+@php
+$variable = "Mountaidzdan";
+echo json_encode($best3Seller); 
+
+echo "</br> </br> **";
+
+foreach($best3Seller as $value => $data)
+{
+  echo " </br> VALUE : " . $value;
+  
+  foreach($data as $test => $test2)
+  {
+    echo $test . " : " . $test2 . "</br>";
+  }
+}
+@endphp
+
+<script>
+  var test = '<?php echo $best3Seller;?>'
+  var variable = '<?php echo $variable; ?>'
+  console.log(test)
+  console.log(variable);
+  </script>
 
   @endsection

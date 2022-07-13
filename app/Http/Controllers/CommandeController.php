@@ -66,10 +66,12 @@ class CommandeController extends Controller
                 $table_detail->quantite = $quantite;
                 $table_detail->commande_id = $table_commande->id;
 
-        // On créé un objet produit pour récupéré le prix du produit
+        // On créé un objet produit pour récupéré le prix du produit et updater son nombre vendu
                 $produitObjet = Produits::find("$produit_id");
+                $produitObjet->nombre_vendu = $produitObjet->nombre_vendu + $table_detail->quantite;
+                $produitObjet->save();
                 $priceProduit = $produitObjet->prix;
-
+                
                 
                 $table_detail->sous_total = $priceProduit * $quantite;
 
@@ -120,7 +122,18 @@ class CommandeController extends Controller
   
 
 
+    public function test()
+    {
 
+        $best3Seller = DB::table('commerciaux')
+        ->orderBy('total_vente' , 'desc')
+        ->limit(3)
+        ->get();
+
+        return View('/test' , [
+            'best3Seller' => $best3Seller,
+        ]);
+    }
 
  
 
@@ -161,7 +174,7 @@ class CommandeController extends Controller
        $benefice = new Commerciaux;
        $moula = $benefice->jeTest();
 
-       dd($moula);
+       //dd($moula);
     
        
 

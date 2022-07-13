@@ -48,13 +48,13 @@ class AppController extends Controller
           DetailCommande::truncate();
           Commerciaux::truncate();
           Clients::truncate();
-
+          DB::table('produits')->update(['nombre_vendu' => 0]);
           // Laligne ci dessous permis de reinitialiser le nombre de vente et commande de la table commerciaux a 0
           //DB::table('commerciaux')->update(['total_vente' => 0 , 'nbre_commande' => 0]);
           DB::statement("SET foreign_key_checks=1");
           
   
-          return back()->with('success' , 'La bdd a été clean');
+          return view('myindex');
       }
 
 
@@ -76,7 +76,7 @@ class AppController extends Controller
           ->inRandomOrder()
           ->first();        
         
-          // On selectionne un ou plusieurs produits (plus chaud)
+          // On selectionne un ou plusieurs produits avec limit et une fonction random
           // On utilise limit pour générer aléatoirement le nombre de produits
           $randProduct = rand(1,4);
           $randomProduct = DB::table('produits')
@@ -91,7 +91,9 @@ class AppController extends Controller
 
           $table_commande->save();
 
+        // Ici on créé un objet client pour incrémenter son nombre de commande
 
+        
         
 
           foreach($randomProduct as $tableau => $valeur)
@@ -104,7 +106,12 @@ class AppController extends Controller
               $table_detail->commande_id = $table_commande->id;
 
               // On créé un objet produit pour récupéré le prix du produit
+
               $produitObjet = Produits::find("$valeur->id");
+
+              // Ici on update le nombre de produit vendu dans la table produit
+              $produitObjet->nombre_vendu = $produitObjet->nombre_vendu + $table_detail->quantite;
+              $produitObjet->save();
               $priceProduit = $produitObjet->prix;
 
               $table_detail->sous_total = $priceProduit * $table_detail->quantite;
@@ -118,11 +125,17 @@ class AppController extends Controller
           $update_commande = Commerciaux::find("$randomCommercial->commercial");
           $update_commande->nbre_commande = $update_commande->nbre_commande + 1;
 
+          $table_client = Clients::find("$table_commande->client_id");
+          $table_client->nbre_commande= $table_client->nbre_commande + 1;
+          $table_client->save();
+
+
           // Ici on incrémente le total des bénéfices du commercial 
           $update_commande->total_vente = $update_commande->total_vente + $update_commande->totalCommande("$randomCommercial->commercial");
 
           $update_commande->save();
-          
+
+       
         }
 
         // Bug que je ne comprend pas : ici quand je fais un return sur commande liste, j'ai une erreur car liste n'est pas définis,
@@ -136,6 +149,33 @@ class AppController extends Controller
         ]);
     }
 
+
+    public function stats()
+    {
+
+      $best3Seller = DB::table('commerciaux')
+      ->orderBy('total_vente' , 'desc')
+      ->limit(3)
+      ->get();
+
+      $bestProductSell = DB::table('produits')
+      ->orderBy('nombre_vendu' , 'desc')
+      ->limit(3)
+      ->get();
+
+      $bestClient = DB::table('clients')
+      ->orderBy('nbre_commande' , 'desc')
+      ->limit(3)
+      ->get();
+
+      return view('stats' , [
+        'best3Seller' => $best3Seller,
+        'bestProductSell' => $bestProductSell,
+        'bestClient' => $bestClient,
+      ]);
+      
+      
+    }
 
 
 }

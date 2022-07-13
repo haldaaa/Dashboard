@@ -10,11 +10,7 @@ $(document).ready(function() {
     });
 
 
-    if (!$(".checkbox").val()) {
-      $("#submitbutton").removeClass("disabled");
-     // alert('Merci de selectionner un produit');
-     alert("Valeur checkbox changer" );
-  }
+
 
 
   var app = new Vue({
@@ -25,6 +21,7 @@ $(document).ready(function() {
     
   })
 
+  
  
   });
 

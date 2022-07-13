@@ -46,7 +46,7 @@ Route::get('/commande-liste', 'CommandeController@liste')->name('commande-liste'
 
 
 
-Route::get('/test', 'CommandeController@coucou');
+
 
 
 
@@ -59,3 +59,11 @@ Route::get('/balais3', 'AppController@generateSell')->name('createVente');
 // Graphique
 
 Route::get('/chart' , 'ChartController@index')->name('chart-index');
+Route::get('/stats', 'AppController@stats')->name('stats');
+
+
+// Page de test
+
+Route::get('/test', 'CommandeController@test');
+
+

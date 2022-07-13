@@ -10,7 +10,8 @@ class Clients extends Model
     use HasFactory;
 
     protected $table = "clients";
-
+    protected $primaryKey = "client";
+    
     protected $fillable = [
         'nom_entreprise',
         'nbre_commande',
