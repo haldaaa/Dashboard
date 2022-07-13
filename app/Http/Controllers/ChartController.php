@@ -18,13 +18,14 @@ class ChartController extends Controller
         $data=[];
             foreach($record as $ligne)
             {
-                $data['nom_commercial'][] = $ligne->nom_commercial;
-                $data['total_vente'][]= $ligne->total_vente;
+                $data['label'][] = $ligne->nom_commercial;
+                $data['data'][]= $ligne->total_vente;
             }
             $data['chart_data'] = json_encode($data);
+            
 
-
-        return route('chart-index', $data);
+           // dd($data);
+        return view('chart', $data);
         
 
     }
