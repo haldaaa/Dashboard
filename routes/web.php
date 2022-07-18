@@ -64,6 +64,6 @@ Route::get('/stats', 'AppController@stats')->name('stats');
 
 // Page de test
 
-Route::get('/test', 'CommandeController@test');
+Route::get('/test', 'CommandeController@test')->name('pagetest');
 
 

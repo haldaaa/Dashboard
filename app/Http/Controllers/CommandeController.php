@@ -130,8 +130,37 @@ class CommandeController extends Controller
         ->limit(3)
         ->get();
 
+        $nameCommercial = DB::table('commerciaux')
+        ->select('nom')
+        ->pluck('nom');
+
+     
+
+        
+        $record = DB::table('commerciaux')
+        ->select("nom as nom_commercial" , "total_vente")
+        ->get();
+
+
+
+        $data=[];
+            foreach($record as $ligne)
+            {
+                $data['label'][] = $ligne->nom_commercial;
+                $data['vente'][]= $ligne->total_vente;
+                
+            }
+            $data = json_encode($data);
+           // dd($data);
+
+
+        $jsonData = json_encode($nameCommercial);
+
         return View('/test' , [
             'best3Seller' => $best3Seller,
+            'jsonData' => $jsonData,
+            'nameCommercial' => $nameCommercial,
+            'data' => $data,
         ]);
     }
 

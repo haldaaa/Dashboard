@@ -15,17 +15,24 @@ class ChartController extends Controller
         ->select("nom as nom_commercial" , "total_vente")
         ->get();
 
+
+
         $data=[];
             foreach($record as $ligne)
             {
                 $data['label'][] = $ligne->nom_commercial;
-                $data['data'][]= $ligne->total_vente;
+                $data['vente'][]= $ligne->total_vente;
+                
             }
             $data['chart_data'] = json_encode($data);
-            
+        
 
-           // dd($data);
-        return view('chart', $data);
+            
+        return view('test',[
+            'data' => $data,
+            'record' => $record,
+         
+        ]);
         
 
     }

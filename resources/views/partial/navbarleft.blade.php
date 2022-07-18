@@ -67,6 +67,12 @@
             </a>
           </li>
 
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route ('pagetest') }}">
+              <span data-feather="layers" class="align-text-bottom" title="Créé Commerciaux et Clients"></span>
+              Page test
+            </a>
+          </li>
         </ul>
       </div>
 
