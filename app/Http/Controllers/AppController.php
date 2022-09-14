@@ -59,6 +59,8 @@ class AppController extends Controller
 
 
 
+      // Fonction qui créé des ventes aléatoires
+
       public function generateSell()
       {
 
