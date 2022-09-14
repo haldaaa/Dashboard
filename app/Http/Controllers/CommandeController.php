@@ -61,7 +61,7 @@ class CommandeController extends Controller
          foreach($request->tableau as $produit_id => $quantite)
             {
                 $table_detail = new DetailCommande();
-                
+
                 $table_detail->produit_id = $produit_id;
                 $table_detail->quantite = $quantite;
                 $table_detail->commande_id = $table_commande->id;
@@ -71,8 +71,8 @@ class CommandeController extends Controller
                 $produitObjet->nombre_vendu = $produitObjet->nombre_vendu + $table_detail->quantite;
                 $produitObjet->save();
                 $priceProduit = $produitObjet->prix;
-                
-                
+
+
                 $table_detail->sous_total = $priceProduit * $quantite;
 
                 if($quantite == 0)
@@ -87,7 +87,7 @@ class CommandeController extends Controller
         $update_commande = Commerciaux::find("$request->select_commercial");
         $update_commande->nbre_commande = $update_commande->nbre_commande + 1 ;
 
-        // Ici on incrémente le total des bénéfices du commercial 
+        // Ici on incrémente le total des bénéfices du commercial
         $update_commande->total_vente = $update_commande->total_vente + $update_commande->totalCommande("$request->select_commercial");
 
         // On sauvegarde le nom du commercial pour le message succes a la fin d'une commande réussis
@@ -119,7 +119,7 @@ class CommandeController extends Controller
 
 
 
-  
+
 
 
     public function test()
@@ -134,50 +134,50 @@ class CommandeController extends Controller
         ->select('nom')
         ->pluck('nom');
 
-     
 
-        
+
+
         $record = DB::table('commerciaux')
-        ->select("nom as nom_commercial" , "total_vente")
-        ->get();
+        ->select("nom" , "total_vente")
+        ->orderBy('total_vente' , 'desc')
+        ->pluck('nom', "total_vente" );
+
+
+        $record_values = $record->values();
+        $record_key = $record->keys();
 
 
 
-        $data=[];
-            foreach($record as $ligne)
-            {
-                $data['label'][] = $ligne->nom_commercial;
-                $data['vente'][]= $ligne->total_vente;
-                
-            }
-            $data = json_encode($data);
-           // dd($data);
 
 
-        $jsonData = json_encode($nameCommercial);
 
-        return View('/test' , [
-            'best3Seller' => $best3Seller,
-            'jsonData' => $jsonData,
-            'nameCommercial' => $nameCommercial,
-            'data' => $data,
-        ]);
+
+        return view('/test', compact('record_values', 'record_key'));
+
+        // return View('/test' , [
+         //   'best3Seller' => $best3Seller,
+           // 'jsonData' => $jsonData,
+            //'nameCommercial' => $nameCommercial,
+            //'record' => $record,
+            //'record_values' => $record_values,
+            //'record_keys' => $record_key,
+        //]);
     }
 
- 
+
 
     // Fonction test
     public function coucou()
     {
 
-        
-        // Test et autres 
+
+        // Test et autres
 
 
         // Ici on parcours un tableau de tableau
         $test = new Produits;
         $produits = $test-> getAllPriceAndProduct();
-        
+
         foreach ($produits as $clef => $produit)
         {
             echo "Valeur clef :" . $clef . "</br>";
@@ -188,7 +188,7 @@ class CommandeController extends Controller
             }
             echo "</br>";
         }
-     
+
         $thatid = 4;
         // Méthode la plus simple pour récupéré la valeurd'une table dont on connait l'id, ici on veut recuperer le prix d'un produit.
         $test2 = Produits::find("$thatid");
@@ -199,13 +199,13 @@ class CommandeController extends Controller
         $fakeuser = FakerFactory::create();
         $name = $fakeuser->name();
        // dd($name);
-        
+
        $benefice = new Commerciaux;
        $moula = $benefice->jeTest();
 
        //dd($moula);
-    
-       
+
+
 
 
     }

@@ -7,8 +7,10 @@
 
 
 <p> Page de test </p>
-<canvas id="bar-chart" width="400" height="400"></canvas>
 
+<div class="container">
+    <canvas id="bar-chart" width="400" height="400"></canvas>
+</div>
 
 @php
 
@@ -33,9 +35,10 @@
 
 <script>
 
-  var datajson = '<?php echo $data;?>';
+      var labels =  {{ Js::from($record_key) }};
+      var users =  {{ Js::from($record_values) }};
 
-  console.log(datajson.label);
+    console.log(Object.values(users));
 
   const variabletest = {
     'React': 185134,
@@ -43,18 +46,22 @@
     'Angular': 80460,
     'Svelte': 57022,
     'Ember.js': 22165,
-    'Backbone.js': 27862
+    'AAA.js': 27862,
+    'BBB': 57022,
+    'CCC.js': 22165,
+    'DDD.js': 27862,
+    'EEE': 57022,
+    'Ember.js': 22165,
+
+
 };
 
 
+console.log(typeof nom_commercial);
+console.log('va tu afficher');
+console.log(typeof variabletest);
 
-  //console.log(Object.values(datajson))
- 
-  for(let i = 0; i < variabletest.length; i++) {
-    let obj = variabletest[i];
 
-    console.log(obj.id);
-}
 
 
 
@@ -62,12 +69,12 @@
   new Chart(document.getElementById("bar-chart"), {
       type: 'bar',
       data: {
-        labels: datajson.label,
+        labels: Object.values(users),
         datasets: [
           {
-            label: "Population (millions)",
+            label: "Bénéfices (Euros)",
             backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-            data: Object.values(variabletest),
+            data: Object.values(labels),
           }
         ]
       },
