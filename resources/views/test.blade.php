@@ -38,32 +38,14 @@
       var labels =  {{ Js::from($record_key) }};
       var users =  {{ Js::from($record_values) }};
 
-    console.log(Object.values(users));
+    //console.log(Object.values(users));
 
-  const variabletest = {
-    'React': 185134,
-    'Vue': 195514,
-    'Angular': 80460,
-    'Svelte': 57022,
-    'Ember.js': 22165,
-    'AAA.js': 27862,
-    'BBB': 57022,
-    'CCC.js': 22165,
-    'DDD.js': 27862,
-    'EEE': 57022,
-    'Ember.js': 22165,
-
-
-};
 
 
 console.log(typeof nom_commercial);
 console.log('va tu afficher');
+console.log('testgit');
 console.log(typeof variabletest);
-
-
-
-
 
 
   new Chart(document.getElementById("bar-chart"), {
