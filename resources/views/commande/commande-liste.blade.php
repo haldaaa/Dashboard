@@ -3,7 +3,7 @@
 
 @section ('contenu')
 
-
+Rajouter class div container et row
 <table class="table ">
     <thead>
       <tr>
@@ -24,8 +24,11 @@
     </tbody>
 
   </table>
-  <div>
-    <canvas id="myChart"> <p> CACA </p> </canvas>
+  <div class="row">
+    <div class="col-md-6">
+      <p> Une div ici </p>
+    </div>
+
   </div>
 
 @endsection

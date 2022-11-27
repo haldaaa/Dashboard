@@ -30,7 +30,11 @@ Il y'aura <b>5 pages</b> : </br> </br>
     - Intégrer Js Charts </br> </br> </br>
 
     MAJ : 27/11/2022 : </br>
-    - Peaufinage du site
+    - Peaufinage du site </br>
+    - Objectif : : créé template / page commande </br> 
+    - Objectif : créé une fonction php qui se lance toutes les heures afin d'automatiser l'application </br>
+    - A finir : vérification formulaire. </br>
+    
     
 
 </p>
