@@ -9,23 +9,15 @@
 <p> Page de test </p>
 
 <div class="container">
-    <canvas id="bar-chart" width="400" height="400"></canvas>
+  <div class="row">
+    <div class="col-md-5">
+    <canvas id="bar-chart" width="400" height="400"> Les plus gros clients </canvas>
+    </div>
+  </div>
 </div>
 
-@php
-
-@endphp
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
-<script src="https://unpkg.com/@popperjs/core@2"> </script>
-<!-- VueJS2 et Vuetify -->
-
-<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
 
 
 <!-- ChartJS -->

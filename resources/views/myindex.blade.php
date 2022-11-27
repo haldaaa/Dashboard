@@ -27,7 +27,10 @@ Il y'aura <b>5 pages</b> : </br> </br>
     - Générer une page par commercial avec toutes ses ventes </br> 
     - Dans liste de produit, voir le produit le plus vendu </br>
     - But ultime : générer une instance du site : commerciaux, clients, produits et ventes. </br>
-    - Intégrer Js Charts </br>
+    - Intégrer Js Charts </br> </br> </br>
+
+    MAJ : 27/11/2022 : </br>
+    - Peaufinage du site
     
 
 </p>

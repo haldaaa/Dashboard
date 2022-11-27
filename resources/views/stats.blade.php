@@ -7,23 +7,32 @@
 
 <div class="row">
 
-    <div class="col-md-5">
-        <h2 class='offset-2'> Meuilleurs commerciaux :</h2> </br>
-        <table class="table table-striped ">
-            <thead class="thead-light ">
-              <tr>
-           
-                <th scope="col">Nom commercial</th>
-                <th scope="col">Nombre commande</th>
-                <th scope="col">Total vente</th>
-              </tr>
-            </thead>
-            <tbody>
-            @foreach($best3Seller as $data)
-              <tr>
-                <td scope="row">{{$data->nom }}</td>
-                <td>{{$data->nbre_commande}}</td>
-                <td>{{$data->total_vente}} €</td>
+  <div class="col-md-5 cadre">
+    <p> Test </p>
+  </div>
+
+</div>
+
+
+
+<div class="row"> <!-- Div Row commerciaux / produits-->
+  <div class="col-md-5">
+   <h2 class='offset-2'> Meuilleurs commerciaux :</h2> </br>
+    <table class="table table-striped ">
+     <thead class="thead-light ">
+        <tr>
+            <th scope="col">Nom commercial</th>
+            <th scope="col">Nombre commande</th>
+            <th scope="col">Total vente</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @foreach($best3Seller as $data)
+        <tr>
+            <td scope="row">{{$data->nom }}</td>
+            <td>{{$data->nbre_commande}}</td>
+            <td>{{$data->total_vente}} €</td>
                
               </tr>
            @endforeach
@@ -108,4 +117,7 @@
 
 </div> <!-- Deuxième div row --> 
 
+
 @endsection
+
+
