@@ -176,7 +176,7 @@ class AppController extends Controller
 
       // Les deux paragraphes suivants concernent le graphique des meuilleurs ventes
 
-      # 1 : On fait une requête pour récupéré les données
+      # 1 : On fait une requête pour récupéré les données pour le graphique meuilleur vendeurs
       $record = DB::table('commerciaux')
       ->select("nom" , "total_vente")
       ->orderBy('total_vente' , 'desc')
@@ -187,6 +187,14 @@ class AppController extends Controller
       $record_key = $record->keys();
 
 
+      # Requête pour le deuxième graphique meuilleur clients :
+      $record1 = DB::table('clients')
+      ->select("nom_entreprise" , "nbre_commande")
+      ->orderBy("nbre_commande" , 'desc')
+      ->pluck('nom_entreprise' , 'nbre_commande');
+      $record_values1 = $record1->values();
+      $record_key1 = $record1->keys();
+
 
       # Ici on renvoie les données pour le graphique en "normal", a contrario du controller CommandeController@test de la page de test /test 
       # ou on les renvoie avec la méthode compact.
@@ -196,6 +204,8 @@ class AppController extends Controller
         'bestClient' => $bestClient,
         'record_values' => $record_values,
         'record_key' => $record_key,
+        'record_values1' => $record_values1,
+        'record_key1' => $record_key1,
       ]);
 
 
