@@ -10,7 +10,8 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-5"> 
+  
     <canvas id="bar-chart" width="400" height="400"> Les plus gros clients </canvas>
     </div>
   </div>

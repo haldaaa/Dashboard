@@ -7,11 +7,19 @@
 
 <div class="row">
 
-  <div class="col-md-5 cadre">
-    <p> Test </p>
-  </div>
+    <div class="col-md-5">
+      <h2> Graphique </h2> </br> 
+      <h3 class="offset-3"> Meuilleur vendeur </h3> </br>
+      <canvas id="graph-vendeur" width="400" height="400"> Les plus gros clients </canvas>
+   </div>
 
-</div>
+   <div class="col-md-5">
+    <h2> Graphique </h2> </br> 
+    <h3 class="offset-3"> Meuilleur ventes </h3> </br>
+    <canvas id="graph-client" width="400" height="400"> Les plus gros clients </canvas>
+ </div>
+
+</div> <!-- Div Row graphique -->
 
 
 
@@ -111,11 +119,43 @@
         </table>
     </div>
 
-    <div class="row">
-      <p> Du contenu soon </p>
-    </div>
+
 
 </div> <!-- Deuxième div row --> 
+
+<!-- ChartJS -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script>
+
+      var labels =  {{ Js::from($record_key) }};
+      var users =  {{ Js::from($record_values) }};
+
+
+  new Chart(document.getElementById("graph-vendeur"), {
+      type: 'bar',
+      data: {
+        labels: Object.values(users),
+        datasets: [
+          {
+            label: "Bénéfices (Euros)",
+            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+            data: Object.values(labels),
+          }
+        ]
+      },
+      options: {
+        legend: { display: false },
+        title: {
+          display: true,
+          text: 'Predicted world population (millions) in 2050'
+        }
+      }
+  });
+
+  </script>
 
 
 @endsection

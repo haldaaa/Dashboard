@@ -155,6 +155,9 @@ class AppController extends Controller
     public function stats()
     {
 
+      // Ici on calcule les meuilleurs vendeurs, produits et clients avant  de les renvoyer et de les mettre en forme dans un 
+      // tableau
+
       $best3Seller = DB::table('commerciaux')
       ->orderBy('total_vente' , 'desc')
       ->limit(3)
@@ -170,10 +173,29 @@ class AppController extends Controller
       ->limit(3)
       ->get();
 
+
+      // Les deux paragraphes suivants concernent le graphique des meuilleurs ventes
+
+      # 1 : On fait une requête pour récupéré les données
+      $record = DB::table('commerciaux')
+      ->select("nom" , "total_vente")
+      ->orderBy('total_vente' , 'desc')
+      ->pluck('nom', "total_vente" );
+
+      # 2 : Méthode trouvé sur internet, il doit exister plus propre
+      $record_values = $record->values();
+      $record_key = $record->keys();
+
+
+
+      # Ici on renvoie les données pour le graphique en "normal", a contrario du controller CommandeController@test de la page de test /test 
+      # ou on les renvoie avec la méthode compact.
       return view('stats' , [
         'best3Seller' => $best3Seller,
         'bestProductSell' => $bestProductSell,
         'bestClient' => $bestClient,
+        'record_values' => $record_values,
+        'record_key' => $record_key,
       ]);
 
 
