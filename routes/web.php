@@ -58,7 +58,7 @@ Route::get('/balais3', 'AppController@generateSell')->name('createVente');
 
 // Graphique
 
-Route::get('/commande-liste' , 'CommandeController@maCommande')->name('OUIOUI');
+Route::get('/commande-liste' , 'CommandeController@maCommande')->name('commande-liste');
 Route::get('/stats', 'AppController@stats')->name('stats');
 
 

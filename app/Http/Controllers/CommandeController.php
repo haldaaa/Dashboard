@@ -205,12 +205,30 @@ class CommandeController extends Controller
     public function maCommande()
     {
 
-        $maCommande = DB::table('Commandes')
-        ->where('commercial_id' , '=' , "9")
-        ->join('details_commande' , 'commande_id' , 'commandes.id')
+        // Notes : ici on créé une fonction pour récupéré selon un ID toutes les commandes d'un vendeurs
+        // A la ligne 215 au select, j'ai tout mis dans une seul ligne : il faut bien différencier les noms selon les tables.
+        // Pour les jointures, voici la syntaxte : join( 'table_a_joindre' , 'clé_primaire_tableAJoindre' , 'clé_primaire_tabledeBase')
+
+        // Marche mais pas top :
+            //  $maCommande = DB::table('Commandes')
+            //->where('commercial_id' , '=' , "9")
+            //->join('details_commande' , 'commande_id' , 'commandes.id')
+            //->join('commerciaux' , 'commercial' , 'commercial_id')
+       
+            //->select('nom As Nom' , 'nbre_commande AS Total commande' , 'total_vente AS Total bénéfices' , 'quantite AS Quantité' , 'sous_total AS Sous Total')
+            //->get();
+
+            // dd($maCommande);
+
+
+        $maCommande = DB::table('details_commande')
+        ->where('commande_id' , '=' , '1')
+        ->join('produits' , 'produit_id' , 'produit_id')
+        ->select('quantite AS Quantité' , 'sous_total AS Sous Total' , 'nom_produit AS Nom' , 'prix AS Prix Unitaire')
         ->get();
 
         dd($maCommande);
+
         return View('commande.commande-liste' , [
             'maCommande' => $maCommande
         ]);
