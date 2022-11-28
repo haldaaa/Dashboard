@@ -221,6 +221,10 @@ class CommandeController extends Controller
             // dd($maCommande);
 
 
+
+        // 28/11/2022 4h00 
+        // Ne marche pas : pour une commande, balance au  tant de resultat qu'on a de produit.
+
         $maCommande = DB::table('details_commande')
         ->where('commande_id' , '=' , '4')
         ->select('quantite AS Quantité' , 'sous_total AS Sous Total' , 'nom_produit AS Nom' , 'prix AS Prix Unitaire')
