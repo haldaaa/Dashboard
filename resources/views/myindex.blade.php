@@ -34,7 +34,8 @@ Il y'aura <b>5 pages</b> : </br> </br>
     - Objectif : : créé template / page commande </br> 
     - Objectif : créé une fonction php qui se lance toutes les heures afin d'automatiser l'application </br>
     - A finir : vérification formulaire. </br>
-    
+
+     - Fichier CommandeController la fonction a la fin </br>
     
 
 </p>

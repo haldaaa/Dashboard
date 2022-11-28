@@ -222,9 +222,10 @@ class CommandeController extends Controller
 
 
         $maCommande = DB::table('details_commande')
-        ->where('commande_id' , '=' , '1')
-        ->join('produits' , 'produit_id' , 'produit_id')
+        ->where('commande_id' , '=' , '4')
         ->select('quantite AS Quantité' , 'sous_total AS Sous Total' , 'nom_produit AS Nom' , 'prix AS Prix Unitaire')
+        ->join('produits' , 'produit_id' , 'produit_id')
+    
         ->get();
 
         dd($maCommande);
