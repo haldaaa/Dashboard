@@ -58,7 +58,7 @@ Route::get('/balais3', 'AppController@generateSell')->name('createVente');
 
 // Graphique
 
-Route::get('/chart' , 'ChartController@index')->name('chart-index');
+Route::get('/commande-liste' , 'CommandeController@maCommande')->name('OUIOUI');
 Route::get('/stats', 'AppController@stats')->name('stats');
 
 

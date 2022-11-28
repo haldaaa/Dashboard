@@ -147,11 +147,6 @@ class CommandeController extends Controller
         $record_key = $record->keys();
 
 
-
-
-
-
-
         return view('/test', compact('record_values', 'record_key'));
 
         // return View('/test' , [
@@ -166,13 +161,11 @@ class CommandeController extends Controller
 
 
 
-    // Fonction test
+    // Fonction test : 
     public function coucou()
     {
 
-
         // Test et autres
-
 
         // Ici on parcours un tableau de tableau
         $test = new Produits;
@@ -205,11 +198,22 @@ class CommandeController extends Controller
 
        //dd($moula);
 
-
-
-
     }
 
 
+
+    public function maCommande()
+    {
+
+        $maCommande = DB::table('Commandes')
+        ->where('commercial_id' , '=' , "9")
+        ->join('details_commande' , 'commande_id' , 'commandes.id')
+        ->get();
+
+        dd($maCommande);
+        return View('commande.commande-liste' , [
+            'maCommande' => $maCommande
+        ]);
+    }
 
 }

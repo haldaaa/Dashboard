@@ -2,8 +2,8 @@
 
 
 @section ('contenu')
+<div class="container">
 
-Rajouter class div container et row
 <table class="table ">
     <thead>
       <tr>
@@ -24,11 +24,19 @@ Rajouter class div container et row
     </tbody>
 
   </table>
-  <div class="row">
-    <div class="col-md-6">
-      <p> Une div ici </p>
-    </div>
 
+ 
+    <div class="row">
+      <div class="col-md-6 cadre cadreDetailCommande">
+        <p> Commande numéro : </p>
+        <p> Effectué par : </p>
+      
+      </div>
+      <div class="col-md-6 cadre">
+        <p> Une div ici </p>
+      </div>
+
+    </div>
   </div>
 
 @endsection

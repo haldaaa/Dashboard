@@ -10,6 +10,7 @@ class Commandes extends Model
 {
     use HasFactory;
 
+    protected $table = "commandes";
     protected $primary_key = "id" ;
 
     protected $fillable = [
