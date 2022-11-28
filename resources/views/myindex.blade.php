@@ -34,7 +34,8 @@ Il y'aura <b>5 pages</b> : </br> </br>
     - Objectif : : créé template / page commande </br> 
     - Objectif : créé une fonction php qui se lance toutes les heures afin d'automatiser l'application </br>
     - A finir : vérification formulaire. </br>
-
+    - Notes : on en revient t oujours au même, la conception de la bdd est a chié : je galere a recupere les infos d'une commande seulement,
+    alors que cela devrait être simple. </br>
      - Fichier CommandeController la fonction a la fin </br>
     
 
