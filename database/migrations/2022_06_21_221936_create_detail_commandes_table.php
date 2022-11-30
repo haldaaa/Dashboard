@@ -18,7 +18,7 @@ class CreateDetailCommandesTable extends Migration
     public function up()
     {
         Schema::create('detail_commandes', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->foreignId('commande_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
