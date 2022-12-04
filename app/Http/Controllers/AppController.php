@@ -102,11 +102,11 @@ class AppController extends Controller
           {
 
               $table_detail = new DetailCommande();
-
+              
               $table_detail->produit_id = $valeur->id;
               $table_detail->quantite = rand(1,99);
               $table_detail->commande_id = $table_commande->id;
-
+              
               // On créé un objet produit pour récupéré le prix du produit
 
               $produitObjet = Produits::find("$valeur->id");
@@ -115,7 +115,7 @@ class AppController extends Controller
               $produitObjet->nombre_vendu = $produitObjet->nombre_vendu + $table_detail->quantite;
               $produitObjet->save();
               $priceProduit = $produitObjet->prix;
-
+          
               $table_detail->sous_total = $priceProduit * $table_detail->quantite;
 
               $table_detail->save();
@@ -150,6 +150,9 @@ class AppController extends Controller
             'liste' => $liste
         ]);
     }
+
+
+
 
 
     public function stats()

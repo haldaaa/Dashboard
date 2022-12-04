@@ -8,6 +8,8 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Http\\Controllers\\AppController' => $baseDir . '/app/Http/Controllers/AppController.php',
+    'App\\Http\\Controllers\\ChartController' => $baseDir . '/app/Http/Controllers/ChartController.php',
     'App\\Http\\Controllers\\ClientsController' => $baseDir . '/app/Http/Controllers/ClientsController.php',
     'App\\Http\\Controllers\\CommandeController' => $baseDir . '/app/Http/Controllers/CommandeController.php',
     'App\\Http\\Controllers\\CommerciauxController' => $baseDir . '/app/Http/Controllers/CommerciauxController.php',
@@ -140,6 +142,7 @@ return array(
     'Cron\\HoursField' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/HoursField.php',
     'Cron\\MinutesField' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/MinutesField.php',
     'Cron\\MonthField' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
+    'Database\\Factories\\ClientsFactory' => $baseDir . '/database/factories/ClientsFactory.php',
     'Database\\Factories\\CommerciauxFactory' => $baseDir . '/database/factories/CommerciauxFactory.php',
     'Database\\Factories\\UserFactory' => $baseDir . '/database/factories/UserFactory.php',
     'Database\\Seeders\\DatabaseSeeder' => $baseDir . '/database/seeders/DatabaseSeeder.php',

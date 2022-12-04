@@ -21,6 +21,14 @@ class Commerciaux extends Model
     ];
 
 
+    ## 03/12/2022 01h18 : test 
+    public function commandes()
+    {
+        return $this->belongsTo(Commandes::class);
+    }
+
+    
+
     // Recupére toutes les commandes de tout les commerciaux
     public function allCommande()
     {

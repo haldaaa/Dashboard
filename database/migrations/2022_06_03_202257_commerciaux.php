@@ -18,11 +18,15 @@ class Commerciaux extends Migration
     public function up()
     {
         Schema::create('commerciaux', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('commercial'); // Clé primaire + index sur phpmyadmin
+           
             $table->string('nom')->unique();
-            $table->string('prenom');
             $table->string('ville');
-            $table->string('nbre_commande');
+            $table->integer('nbre_commande');
+            $table->integer('total_vente');
+            $table->binary('image');
+            $table->timestamps();
+           
         });
 
     }
@@ -34,6 +38,6 @@ class Commerciaux extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('commerciaux');
     }
 }

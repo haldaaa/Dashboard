@@ -15,8 +15,13 @@ class Produits extends Migration
     {
         Schema::create('produits', function (Blueprint $table) {
             $table->increments('id');
+         
+
             $table->string('nom_produit');
             $table->integer('prix');
+            $table->integer('nombre_vendu');
+            $table->binary('image')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -27,6 +32,6 @@ class Produits extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('produits');
     }
 }
