@@ -14,9 +14,12 @@ class Clients extends Migration
     public function up()
     {
         Schema::create('clients', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('client');
+           
+
             $table->string('nom_entreprise');
             $table->integer('nbre_commande');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +30,6 @@ class Clients extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('clients');
     }
 }

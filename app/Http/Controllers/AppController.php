@@ -102,11 +102,11 @@ class AppController extends Controller
           {
 
               $table_detail = new DetailCommande();
-
+              
               $table_detail->produit_id = $valeur->id;
               $table_detail->quantite = rand(1,99);
               $table_detail->commande_id = $table_commande->id;
-
+              
               // On créé un objet produit pour récupéré le prix du produit
 
               $produitObjet = Produits::find("$valeur->id");
@@ -115,7 +115,7 @@ class AppController extends Controller
               $produitObjet->nombre_vendu = $produitObjet->nombre_vendu + $table_detail->quantite;
               $produitObjet->save();
               $priceProduit = $produitObjet->prix;
-
+          
               $table_detail->sous_total = $priceProduit * $table_detail->quantite;
 
               $table_detail->save();
@@ -152,8 +152,14 @@ class AppController extends Controller
     }
 
 
+
+
+
     public function stats()
     {
+
+      // Ici on calcule les meuilleurs vendeurs, produits et clients avant  de les renvoyer et de les mettre en forme dans un 
+      // tableau
 
       $best3Seller = DB::table('commerciaux')
       ->orderBy('total_vente' , 'desc')
@@ -170,10 +176,39 @@ class AppController extends Controller
       ->limit(3)
       ->get();
 
+
+      // Les deux paragraphes suivants concernent le graphique des meuilleurs ventes
+
+      # 1 : On fait une requête pour récupéré les données pour le graphique meuilleur vendeurs
+      $record = DB::table('commerciaux')
+      ->select("nom" , "total_vente")
+      ->orderBy('total_vente' , 'desc')
+      ->pluck('nom', "total_vente" );
+
+      # 2 : Méthode trouvé sur internet, il doit exister plus propre
+      $record_values = $record->values();
+      $record_key = $record->keys();
+
+
+      # Requête pour le deuxième graphique meuilleur clients :
+      $record1 = DB::table('clients')
+      ->select("nom_entreprise" , "nbre_commande")
+      ->orderBy("nbre_commande" , 'desc')
+      ->pluck('nom_entreprise' , 'nbre_commande');
+      $record_values1 = $record1->values();
+      $record_key1 = $record1->keys();
+
+
+      # Ici on renvoie les données pour le graphique en "normal", a contrario du controller CommandeController@test de la page de test /test 
+      # ou on les renvoie avec la méthode compact.
       return view('stats' , [
         'best3Seller' => $best3Seller,
         'bestProductSell' => $bestProductSell,
         'bestClient' => $bestClient,
+        'record_values' => $record_values,
+        'record_key' => $record_key,
+        'record_values1' => $record_values1,
+        'record_key1' => $record_key1,
       ]);
 
 

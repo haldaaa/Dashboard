@@ -15,9 +15,15 @@ class Commandes extends Migration
     {
         Schema::create('commandes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nom_commercial');
-            $table->string('nom_client');
-            $table->string('produits');
+            
+
+            $table->unsignedBigInteger('commercial_id');
+            $table->foreign('commercial_id')->references('commercial')->on('commerciaux');
+
+            $table->unsignedBigInteger('client_id');
+            $table->foreign('client_id')->references('client')->on('clients');
+          
+            $table->timestamps();
 
         });
     }
@@ -29,6 +35,6 @@ class Commandes extends Migration
      */
     public function down()
     {
-        //
+           Schema::dropIfExists('commandes');
     }
 }

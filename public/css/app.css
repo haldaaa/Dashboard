@@ -6,6 +6,13 @@
 }
 
 
+/* Général */
+
+.cadre{
+    border : 2px red dotted;
+    
+}
+
 /* Page commerciaux */
 
 
@@ -15,10 +22,8 @@
     height: 18%;
     margin: 4%;
     display:flex;
-
-
-
 }
+
 
 .card:hover{
     background-color:rgba(211, 212, 223, 0.829);

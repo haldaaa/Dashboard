@@ -2,7 +2,7 @@
 
 
 @section ('contenu')
-
+<div class="container">
 
 <table class="table ">
     <thead>
@@ -24,8 +24,19 @@
     </tbody>
 
   </table>
-  <div>
-    <canvas id="myChart"> <p> CACA </p> </canvas>
+
+ 
+    <div class="row">
+      <div class="col-md-6 cadre cadreDetailCommande">
+        <p> Commande numéro : </p>
+        <p> Effectué par : </p>
+      
+      </div>
+      <div class="col-md-6 cadre">
+        <p> Une div ici </p>
+      </div>
+
+    </div>
   </div>
 
 @endsection

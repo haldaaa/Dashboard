@@ -18,4 +18,10 @@ class Clients extends Model
 
 
     ];
+
+
+    public function commandes()
+    {
+        return $this->hasOne(Commandes::class);
+    }
 }

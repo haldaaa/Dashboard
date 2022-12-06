@@ -147,11 +147,6 @@ class CommandeController extends Controller
         $record_key = $record->keys();
 
 
-
-
-
-
-
         return view('/test', compact('record_values', 'record_key'));
 
         // return View('/test' , [
@@ -166,13 +161,11 @@ class CommandeController extends Controller
 
 
 
-    // Fonction test
+    // Fonction test : 
     public function coucou()
     {
 
-
         // Test et autres
-
 
         // Ici on parcours un tableau de tableau
         $test = new Produits;
@@ -205,11 +198,50 @@ class CommandeController extends Controller
 
        //dd($moula);
 
-
-
-
     }
 
 
+
+    public function maCommande()
+    {
+
+        // Notes : ici on créé une fonction pour récupéré selon un ID toutes les commandes d'un vendeurs
+        // A la ligne 215 au select, j'ai tout mis dans une seul ligne : il faut bien différencier les noms selon les tables.
+        // Pour les jointures, voici la syntaxte : join( 'table_a_joindre' , 'clé_primaire_tableAJoindre' , 'clé_primaire_tabledeBase')
+
+        // Marche mais pas top :
+            //  $maCommande = DB::table('Commandes')
+            //->where('commercial_id' , '=' , "9")
+            //->join('details_commande' , 'commande_id' , 'commandes.id')
+            //->join('commerciaux' , 'commercial' , 'commercial_id')
+       
+            //->select('nom As Nom' , 'nbre_commande AS Total commande' , 'total_vente AS Total bénéfices' , 'quantite AS Quantité' , 'sous_total AS Sous Total')
+            //->get();
+
+            // dd($maCommande);
+
+
+
+        // 28/11/2022 4h00 
+        // Ne marche pas : pour une commande, balance au  tant de resultat qu'on a de produit.
+
+        // 28/11/2022 23h00 
+        // Ne marche toujours pas : je dois trouver la commande X avec ses produits et son client / fournisseur 
+        
+        $maCommande = DB::table('details_commande')
+        ->where('commande_id' , '=' , '1')
+        //->select('quantite AS Quantité' , 'sous_total AS Sous Total' , 'nom_produit AS Nom' , 'prix AS Prix Unitaire')
+        ->join('produits' , 'produit_id' , 'produit_id')
+
+        
+    
+        ->get();
+
+        dd($maCommande);
+
+        return View('commande.commande-liste' , [
+            'maCommande' => $maCommande
+        ]);
+    }
 
 }

@@ -15,7 +15,6 @@ class CommerciauxFactory extends Factory
     {
         return [
             'nom' => $this->faker->name(),
-            
             'ville' => $this->faker->state(),
             'nbre_commande' => 0,
             'total_vente' => 0,

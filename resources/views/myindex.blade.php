@@ -27,7 +27,16 @@ Il y'aura <b>5 pages</b> : </br> </br>
     - Générer une page par commercial avec toutes ses ventes </br> 
     - Dans liste de produit, voir le produit le plus vendu </br>
     - But ultime : générer une instance du site : commerciaux, clients, produits et ventes. </br>
-    - Intégrer Js Charts </br>
+    - Intégrer Js Charts </br> </br> </br>
+
+    MAJ : 27/11/2022 : </br>
+    - Peaufinage du site </br>
+    - Objectif : : créé template / page commande </br> 
+    - Objectif : créé une fonction php qui se lance toutes les heures afin d'automatiser l'application </br>
+    - A finir : vérification formulaire. </br>
+    - Notes : on en revient t oujours au même, la conception de la bdd est a chié : je galere a recupere les infos d'une commande seulement,
+    alors que cela devrait être simple. </br>
+     - Fichier CommandeController la fonction a la fin </br>
     
 
 </p>

@@ -15,18 +15,19 @@ class DetailCommande extends Model
     protected $fillable = [
         'commande_id',
         'produit_id',
-        'quantite'
+        'quantite',
+        'sous_total'
 
     ];
 
-    public function commande_id()
+    public function commandes()
     {
         return $this->hasOne(Commandes::class, 'commande_id');
     }
 
-    public function produit_id()
+    public function commerciaux()
     {
-        return $this->hasMany(Produits::class, 'produit_id');
+        return $this->hasOne(Produits::class, 'produit_id');
     }
 
     public function beneficeCommercial($id)
