@@ -37,6 +37,9 @@ Il y'aura <b>5 pages</b> : </br> </br>
     - Notes : on en revient t oujours au même, la conception de la bdd est a chié : je galere a recupere les infos d'une commande seulement,
     alors que cela devrait être simple. </br>
      - Fichier CommandeController la fonction a la fin </br>
+
+     MAJ 08/12/2022 : </br>
+     - CICD presque fonctionelle ! </br>
     
 
 </p>
