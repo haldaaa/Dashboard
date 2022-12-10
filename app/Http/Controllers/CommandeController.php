@@ -109,6 +109,32 @@ class CommandeController extends Controller
         // Ici on récupére toutes les commandes via la fonction créé dans me model Commerciaux
         $test = new Commerciaux;
         $liste =$test-> allCommande();
+        
+
+        // Objectif : obtenir le détail d'une commande (produit, quantité, client/com) a partir d'un id
+        // Maj 10/12/2022 20h51 : Ici, on a le nom du vendeur et le total pour une commande donné
+
+        $maCommande = DB::table('commandes')
+        ->where('id' , '=' , '1')
+        ->join('commerciaux' , 'commercial_id' , 'commercial') 
+        ->select('id AS Id commande' , 'commandes.created_at AS Création commande' , 'nom AS Nom vendeur' , 'total_vente AS Total commande')
+        ->get();
+
+        $maCommande2 =  DB::table('details_commande')
+        ->where('commande_id' , '=' , '1')
+        ->join('produits' , 'produit_id' , 'produit_id')  
+        ->select('quantite AS Quantité' , 'nom_produit AS Nom article' , 'prix AS Prix de base' , 'nombre_vendu AS Total vente du produit ' )
+        ->get();
+
+
+       // $commandeFull = array_merge($maCommande, $maCommande2);
+
+        $maCommande = collect($maCommande);
+        $maCommande2 = collect($maCommande2);
+
+        $commandeFull = array_merge($maCommande, $maCommande2);
+
+        dd($commandeFull);
 
 
         return View('commande.commande-liste' , [
@@ -209,18 +235,8 @@ class CommandeController extends Controller
         // A la ligne 215 au select, j'ai tout mis dans une seul ligne : il faut bien différencier les noms selon les tables.
         // Pour les jointures, voici la syntaxte : join( 'table_a_joindre' , 'clé_primaire_tableAJoindre' , 'clé_primaire_tabledeBase')
 
-        // Marche mais pas top :
-            //  $maCommande = DB::table('Commandes')
-            //->where('commercial_id' , '=' , "9")
-            //->join('details_commande' , 'commande_id' , 'commandes.id')
-            //->join('commerciaux' , 'commercial' , 'commercial_id')
-       
-            //->select('nom As Nom' , 'nbre_commande AS Total commande' , 'total_vente AS Total bénéfices' , 'quantite AS Quantité' , 'sous_total AS Sous Total')
-            //->get();
 
-            // dd($maCommande);
-
-
+           
 
         // 28/11/2022 4h00 
         // Ne marche pas : pour une commande, balance au  tant de resultat qu'on a de produit.
@@ -228,16 +244,16 @@ class CommandeController extends Controller
         // 28/11/2022 23h00 
         // Ne marche toujours pas : je dois trouver la commande X avec ses produits et son client / fournisseur 
         
-        $maCommande = DB::table('details_commande')
-        ->where('commande_id' , '=' , '1')
+      //  $maCommande = DB::table('details_commande')
+        //->where('commande_id' , '=' , '1')
         //->select('quantite AS Quantité' , 'sous_total AS Sous Total' , 'nom_produit AS Nom' , 'prix AS Prix Unitaire')
-        ->join('produits' , 'produit_id' , 'produit_id')
-
-        
+        //->join('produits' , 'produit_id' , 'produit_id')  
+        // dd($maCommande);
+     
+        $maCommande ="3";
     
-        ->get();
+      
 
-        dd($maCommande);
 
         return View('commande.commande-liste' , [
             'maCommande' => $maCommande

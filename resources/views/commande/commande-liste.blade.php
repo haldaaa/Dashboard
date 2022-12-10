@@ -9,8 +9,8 @@
       <tr>
 
         <th scope="col">Commercial </th>
-        <th scope="col">Nombre ventes</th>
-        <th scope="col">Bénéfice</th>
+        <th scope="col">Nombre de commandes</th>
+        <th scope="col">Bénéfice total</th>
       </tr>
     </thead>
     <tbody>
@@ -28,7 +28,7 @@
  
     <div class="row">
       <div class="col-md-6 cadre cadreDetailCommande">
-        <p> Commande numéro : </p>
+        <p> Derniière commande : : </p>
         <p> Effectué par : </p>
       
       </div>
