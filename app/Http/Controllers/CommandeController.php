@@ -117,7 +117,7 @@ class CommandeController extends Controller
         $maCommande = DB::table('commandes')
         ->where('id' , '=' , '1')
         ->join('commerciaux' , 'commercial_id' , 'commercial') 
-        ->select('id AS Id commande' , 'commandes.created_at AS Création commande' , 'nom AS Nom vendeur' , 'total_vente AS Total commande')
+        ->select('id AS Id_commande' , 'commandes.created_at AS Création_commande' , 'nom AS Nom_vendeur' , 'total_vente AS Total commande')
         ->get();
 
         $maCommande2 =  DB::table('details_commande')
@@ -127,18 +127,19 @@ class CommandeController extends Controller
         ->get();
 
 
-       // $commandeFull = array_merge($maCommande, $maCommande2);
+    
 
-        $maCommande = collect($maCommande);
-        $maCommande2 = collect($maCommande2);
 
-        $commandeFull = array_merge($maCommande, $maCommande2);
-
-        dd($commandeFull);
+         $vendeurCommande = $maCommande["0"]->Nom_vendeur;
+         $idCommande[] = $maCommande["0"]->Id_commande;
+        
+       
+       // dd($vendeurCommande);
 
 
         return View('commande.commande-liste' , [
-            'liste' => $liste
+            'liste' => $liste,
+            'vendeurCommande' => $vendeurCommande
         ]);
 
     }

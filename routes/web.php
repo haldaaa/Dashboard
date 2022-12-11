@@ -28,7 +28,7 @@ Route::get('/myindex', function() {
 
 
 
-Route::get('/commerciaux' , 'CommerciauxController@index') ->name('commerciaux');
+Route::get('/commerciaux/liste-commerciaux' , 'CommandeController@liste') ->name('liste-commerciaux');
 
 Route::get('/clients', 'ClientsController@index') ->name('client');
 

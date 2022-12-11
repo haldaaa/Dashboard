@@ -29,7 +29,7 @@
     <div class="row">
       <div class="col-md-6 cadre cadreDetailCommande">
         <p> Derniière commande : : </p>
-        <p> Effectué par : </p>
+        <p> Effectué par : {{ $vendeurCommande}} </p>
       
       </div>
       <div class="col-md-6 cadre">
