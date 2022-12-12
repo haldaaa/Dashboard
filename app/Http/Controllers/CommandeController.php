@@ -131,7 +131,7 @@ class CommandeController extends Controller
 
 
          $vendeurCommande = $maCommande["0"]->Nom_vendeur;
-         $idCommande[] = $maCommande["0"]->Id_commande;
+         $idLastCommande = $maCommande["0"]->Id_commande;
         
        
        // dd($vendeurCommande);
@@ -139,7 +139,8 @@ class CommandeController extends Controller
 
         return View('commande.commande-liste' , [
             'liste' => $liste,
-            'vendeurCommande' => $vendeurCommande
+            'vendeurCommande' => $vendeurCommande,
+            'idLastCommande' => $idLastCommande,
         ]);
 
     }

@@ -3,11 +3,10 @@
 
 @section ('contenu')
 <div class="container">
-
+  <h1 style="center"> Listes des commandes : </h1> </br> </br>
 <table class="table ">
     <thead>
       <tr>
-
         <th scope="col">Commercial </th>
         <th scope="col">Nombre de commandes</th>
         <th scope="col">Bénéfice total</th>
@@ -29,7 +28,8 @@
     <div class="row">
       <div class="col-md-6 cadre cadreDetailCommande">
         <p> Derniière commande : : </p>
-        <p> Effectué par : {{ $vendeurCommande }} </p>
+        <p> Effectué par : {{ $vendeurCommande }}  (ID :{{ $idLastCommande }} )</p>
+
       
       </div>
       <div class="col-md-6 cadre">
