@@ -2,6 +2,7 @@
 
 @section('contenu')
 
+
 @foreach ($commerciaux as $nom )
 <div class="card col-md-3">
     <img src="{{ $nom->image }}" class="card-img-top" alt="...">
