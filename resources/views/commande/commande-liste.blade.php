@@ -33,7 +33,7 @@
       
       </div>
       <div class="col-md-6 cadre">
-        <p> Une div ici </p>
+        <p> On modifie juste pour faire peter les git </p>
       </div>
 
     </div>

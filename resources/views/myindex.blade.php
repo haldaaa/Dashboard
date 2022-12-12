@@ -40,6 +40,14 @@ Il y'aura <b>5 pages</b> : </br> </br>
 
      MAJ 08/12/2022 : </br>
      - CICD presque fonctionelle ! </br>
+
+</br> </br>
+
+    MAJ : 13/12/2022 00h10 </br> 
+    - Réparation routes défectueuses </br> 
+    - Ajout fonctionalité dans liste commande : dernière commande Effectué </br> 
+    - CICD fonctionnelle !  </br> 
+
     
 
 </p>
