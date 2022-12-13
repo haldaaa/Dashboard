@@ -106,6 +106,7 @@ class CommandeController extends Controller
     {
 
 
+        // Pareil, on viens juste rajouter un ptit push
         // Ici on récupére toutes les commandes via la fonction créé dans me model Commerciaux
         $test = new Commerciaux;
         $liste =$test-> allCommande();
@@ -123,6 +124,7 @@ class CommandeController extends Controller
         $maCommande2 =  DB::table('details_commande')
         ->where('commande_id' , '=' , '1')
         ->join('produits' , 'produit_id' , 'produit_id')  
+       
         ->select('quantite AS Quantité' , 'nom_produit AS Nom article' , 'prix AS Prix de base' , 'nombre_vendu AS Total vente du produit ' )
         ->get();
 
@@ -132,9 +134,11 @@ class CommandeController extends Controller
 
          $vendeurCommande = $maCommande["0"]->Nom_vendeur;
          $idLastCommande = $maCommande["0"]->Id_commande;
+
         
        
-       // dd($vendeurCommande);
+        dump($maCommande2);
+      
 
 
         return View('commande.commande-liste' , [
