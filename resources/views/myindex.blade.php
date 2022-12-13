@@ -47,7 +47,8 @@ Il y'aura <b>5 pages</b> : </br> </br>
     - Réparation routes défectueuses </br> 
     - Ajout fonctionalité dans liste commande : dernière commande Effectué </br> 
     - CICD fonctionnelle !  </br> 
-
+    - A faire : page d'une commande , </br>
+    - A faire : page avec toutes les commandes dans un tableau </br>
     
 
 </p>
