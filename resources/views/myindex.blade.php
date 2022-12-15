@@ -50,6 +50,11 @@ Il y'aura <b>5 pages</b> : </br> </br>
     - A faire : page d'une commande , </br>
     - A faire : page avec toutes les commandes dans un tableau </br>
     
+</br></br> 
+    MAJ : 15/12/2022 : </br>
+    - Résultat de la requête d'une commande en double :  a résoudre </br>
+
+    
 
 </p>
 @if (session('succes'))
