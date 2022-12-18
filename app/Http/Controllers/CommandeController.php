@@ -121,12 +121,12 @@ class CommandeController extends Controller
         ->select('id AS Id_commande' , 'commandes.created_at AS Création_commande' , 'nom AS Nom_vendeur' , 'total_vente AS Total commande')
         ->get();
 
-        $maCommande2 =  DB::table('details_commande')
-        ->where('commande_id' , '=' , '1')
-        ->join('produits' , 'produit_id' , 'produit_id')  
+        //$maCommande2 =  DB::table('details_commande')
+        //->where('commande_id' , '=' , '2')
+        //->join('produits' , 'produit_id' , 'produit_id')  
        
-        ->select('quantite AS Quantité' , 'nom_produit AS Nom article' , 'prix AS Prix de base' , 'nombre_vendu AS Total vente du produit ' )
-        ->get();
+        //->select('quantite AS Quantité' , 'nom_produit AS Nom article' , 'prix AS Prix de base' , 'nombre_vendu AS Total vente du produit ' )
+        //->get();
 
 
     
@@ -136,8 +136,29 @@ class CommandeController extends Controller
          $idLastCommande = $maCommande["0"]->Id_commande;
 
         
-       
-        dump($maCommande2);
+        // 17/12/2022 : 
+        // Ou alors, on décompose : on recherche toute les commandes avec l'id souhaité dans détails commandes
+        // Et ensuite on voit :
+
+        $maCommande2 =  DB::table('details_commande')
+        ->where('commande_id' , '=' , '2')
+        ->get();
+        $test = 0;
+
+        foreach  ($maCommande2 as $tableau => $valeur)
+        {
+            $test = $test + 1;
+            $produitName =Produits::find("$valeur->id");
+            
+            $produit = $produitName->nom_produit;
+
+           
+          
+            echo "Achaht de :" . $valeur->sous_total . ": " . $produit .  "</br>";
+
+        }
+
+    
       
 
 

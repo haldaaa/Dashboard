@@ -26,6 +26,7 @@
 
  
     <div class="row">
+  
       <div class="col-md-6 cadre cadreDetailCommande">
         <p> Derniière commande : : </p>
         <p> Effectué par : {{ $vendeurCommande }}  (ID :{{ $idLastCommande }} )</p>
