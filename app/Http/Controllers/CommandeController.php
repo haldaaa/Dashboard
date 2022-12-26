@@ -141,10 +141,10 @@ class CommandeController extends Controller
         // Et ensuite on voit :
 
         $maCommande2 =  DB::table('details_commande')
-        ->where('commande_id' , '=' , '2')
+        ->where('commande_id' , '=' , '1')
         ->get();
         $test = 0;
-
+        dump($maCommande2);
         foreach  ($maCommande2 as $tableau => $valeur)
         {
             $test = $test + 1;
@@ -154,8 +154,8 @@ class CommandeController extends Controller
 
            
           
-            echo "Achaht de :" . $valeur->sous_total . ": " . $produit .  "</br>";
-
+            echo "Il y a eu :" . $test . 'itérations' ."</br>";
+            echo "Produit :" . $produit . "  Sous total : " . $valeur->sous_total  . "</br>";
         }
 
     
