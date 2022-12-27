@@ -141,21 +141,24 @@ class CommandeController extends Controller
         // Et ensuite on voit :
 
         $maCommande2 =  DB::table('details_commande')
-        ->where('commande_id' , '=' , '1')
+        ->where('commande_id' , '=' , '2')
         ->get();
         $test = 0;
-        dump($maCommande2);
-        foreach  ($maCommande2 as $tableau => $valeur)
+        $collection = $maCommande2->all();
+        //dump($collection);
+       
+        
+        foreach  ($maCommande2 as $valeur)
         {
+           //dd($maCommande2);
             $test = $test + 1;
-            $produitName =Produits::find("$valeur->id");
-            
-            $produit = $produitName->nom_produit;
 
-           
-          
-            echo "Il y a eu :" . $test . 'itérations' ."</br>";
-            echo "Produit :" . $produit . "  Sous total : " . $valeur->sous_total  . "</br>";
+            //$produitName =Produits::find("$valeur->id"); 
+            //$produit = $produitName->nom_produit;         
+            //echo "Il y a eu :" . $test . 'itérations' ."</br>";
+            //echo "Produit :" . $produit . "  Sous total : " . $valeur->sous_total  . "</br>";
+
+            echo $valeur->quantite;
         }
 
     
