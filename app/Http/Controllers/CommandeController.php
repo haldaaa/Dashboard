@@ -141,34 +141,41 @@ class CommandeController extends Controller
         // Et ensuite on voit :
 
         $maCommande2 =  DB::table('details_commande')
-        ->where('commande_id' , '=' , '2')
+        ->where('commande_id' , '=' , '1')
         ->get();
         $test = 0;
         $collection = $maCommande2->all();
         //dump($collection);
        
         
+        // Ici on parcourt maCommande2 qui liste toute les commandes pour un ID donné
+        // $valeur represente le premier tableau de maCommande2, soit le premier produit acheté
+        // $produit represente le produit selon l'id dans la table details_commandes 
+
         foreach  ($maCommande2 as $valeur)
         {
            //dd($maCommande2);
-            $test = $test + 1;
+        
 
-            //$produitName =Produits::find("$valeur->id"); 
-            //$produit = $produitName->nom_produit;         
-            //echo "Il y a eu :" . $test . 'itérations' ."</br>";
-            //echo "Produit :" . $produit . "  Sous total : " . $valeur->sous_total  . "</br>";
-
-            echo $valeur->quantite;
+            echo $valeur->quantite . " unités de : ";
+            $produit = Produits::find("$valeur->produit_id");
+            echo " " . $produit->nom_produit . " Sous-total : " . $valeur->sous_total . "</br>";
+           
+        
         }
 
     
       
-
+        // 28/12
+        // Ici on récupere tout les ID des commandes pour le select dans la page commande-liste
+        // Par contre ici on récupere toute la table alors qu'on a besoin seulement de l'id, avoir plus tard
+        $commandeSelect = DB::select('select * from commandes');
 
         return View('commande.commande-liste' , [
             'liste' => $liste,
             'vendeurCommande' => $vendeurCommande,
             'idLastCommande' => $idLastCommande,
+            'commandeSelect' => $commandeSelect,
         ]);
 
     }

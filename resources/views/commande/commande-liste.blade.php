@@ -34,7 +34,10 @@
       
       </div>
       <div class="col-md-6 cadre">
-        <p> On modifie juste pour faire peter les git </p>
+        <select id="select" name="select_commandeId" class="custom-select selectname" aria-describedby="selectHelpBlock">
+          @foreach ($commandeSelect  as $nom )
+              <option value="{{ $nom -> id }} ">{{ $nom -> id }} </option>
+          @endforeach
       </div>
 
     </div>
