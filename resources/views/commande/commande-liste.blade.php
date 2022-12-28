@@ -29,15 +29,19 @@
   
       <div class="col-md-6 cadre cadreDetailCommande">
         <p> Derniière commande : : </p>
+      @if(isset($vendeurCommande))
         <p> Effectué par : {{ $vendeurCommande }}  (ID :{{ $idLastCommande }} )</p>
-
+        @endif
       
       </div>
       <div class="col-md-6 cadre">
-        <select id="select" name="select_commandeId" class="custom-select selectname" aria-describedby="selectHelpBlock">
+        <p> Commande à inspecter : </p>
+        @if(isset($commandeSelect))
+        <select id="select" name="select_commandeId" class="custom-select " aria-describedby="selectHelpBlock">
           @foreach ($commandeSelect  as $nom )
               <option value="{{ $nom -> id }} ">{{ $nom -> id }} </option>
           @endforeach
+        @endif
       </div>
 
     </div>

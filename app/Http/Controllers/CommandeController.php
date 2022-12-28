@@ -127,13 +127,16 @@ class CommandeController extends Controller
        
         //->select('quantite AS Quantité' , 'nom_produit AS Nom article' , 'prix AS Prix de base' , 'nombre_vendu AS Total vente du produit ' )
         //->get();
-
-
+        dd($maCommande);
+        $vendeurCommande = $maCommande["0"]->Nom_vendeur;
+        $idLastCommande = $maCommande["0"]->Id_commande;
     
 
-
-         $vendeurCommande = $maCommande["0"]->Nom_vendeur;
-         $idLastCommande = $maCommande["0"]->Id_commande;
+            if(empty($maCommande))
+        { 
+           $vendeurCommande = "Un vendeur";
+           $idLastCommande = " Une ID";
+        } 
 
         
         // 17/12/2022 : 
@@ -169,6 +172,7 @@ class CommandeController extends Controller
         // 28/12
         // Ici on récupere tout les ID des commandes pour le select dans la page commande-liste
         // Par contre ici on récupere toute la table alors qu'on a besoin seulement de l'id, avoir plus tard
+
         $commandeSelect = DB::select('select * from commandes');
 
         return View('commande.commande-liste' , [
