@@ -106,13 +106,76 @@ class CommandeController extends Controller
     {
 
 
+        // Pareil, on viens juste rajouter un ptit push
         // Ici on récupére toutes les commandes via la fonction créé dans me model Commerciaux
         $test = new Commerciaux;
         $liste =$test-> allCommande();
+        
 
+        // Objectif : obtenir le détail d'une commande (produit, quantité, client/com) a partir d'un id
+        // Maj 10/12/2022 20h51 : Ici, on a le nom du vendeur et le total pour une commande donné
+
+        $maCommande = DB::table('commandes')
+        ->where('id' , '=' , '1')
+        ->join('commerciaux' , 'commercial_id' , 'commercial') 
+        ->select('id AS Id_commande' , 'commandes.created_at AS Création_commande' , 'nom AS Nom_vendeur' , 'total_vente AS Total commande')
+        ->get();
+
+        //$maCommande2 =  DB::table('details_commande')
+        //->where('commande_id' , '=' , '2')
+        //->join('produits' , 'produit_id' , 'produit_id')  
+       
+        //->select('quantite AS Quantité' , 'nom_produit AS Nom article' , 'prix AS Prix de base' , 'nombre_vendu AS Total vente du produit ' )
+        //->get();
+
+
+    
+
+
+         $vendeurCommande = $maCommande["0"]->Nom_vendeur;
+         $idLastCommande = $maCommande["0"]->Id_commande;
+
+        
+        // 17/12/2022 : 
+        // Ou alors, on décompose : on recherche toute les commandes avec l'id souhaité dans détails commandes
+        // Et ensuite on voit :
+
+        $maCommande2 =  DB::table('details_commande')
+        ->where('commande_id' , '=' , '1')
+        ->get();
+        $test = 0;
+        $collection = $maCommande2->all();
+        //dump($collection);
+       
+        
+        // Ici on parcourt maCommande2 qui liste toute les commandes pour un ID donné
+        // $valeur represente le premier tableau de maCommande2, soit le premier produit acheté
+        // $produit represente le produit selon l'id dans la table details_commandes 
+
+        foreach  ($maCommande2 as $valeur)
+        {
+           //dd($maCommande2);
+        
+
+            echo $valeur->quantite . " unités de : ";
+            $produit = Produits::find("$valeur->produit_id");
+            echo " " . $produit->nom_produit . " Sous-total : " . $valeur->sous_total . "</br>";
+           
+        
+        }
+
+    
+      
+        // 28/12
+        // Ici on récupere tout les ID des commandes pour le select dans la page commande-liste
+        // Par contre ici on récupere toute la table alors qu'on a besoin seulement de l'id, avoir plus tard
+        $commandeSelect = DB::select('select * from commandes');
 
         return View('commande.commande-liste' , [
-            'liste' => $liste
+            'liste' => $liste,
+            'vendeurCommande' => $vendeurCommande,
+            'idLastCommande' => $idLastCommande,
+            'commandeSelect' => $commandeSelect,
         ]);
 
     }
@@ -209,18 +272,8 @@ class CommandeController extends Controller
         // A la ligne 215 au select, j'ai tout mis dans une seul ligne : il faut bien différencier les noms selon les tables.
         // Pour les jointures, voici la syntaxte : join( 'table_a_joindre' , 'clé_primaire_tableAJoindre' , 'clé_primaire_tabledeBase')
 
-        // Marche mais pas top :
-            //  $maCommande = DB::table('Commandes')
-            //->where('commercial_id' , '=' , "9")
-            //->join('details_commande' , 'commande_id' , 'commandes.id')
-            //->join('commerciaux' , 'commercial' , 'commercial_id')
-       
-            //->select('nom As Nom' , 'nbre_commande AS Total commande' , 'total_vente AS Total bénéfices' , 'quantite AS Quantité' , 'sous_total AS Sous Total')
-            //->get();
 
-            // dd($maCommande);
-
-
+           
 
         // 28/11/2022 4h00 
         // Ne marche pas : pour une commande, balance au  tant de resultat qu'on a de produit.
@@ -228,16 +281,16 @@ class CommandeController extends Controller
         // 28/11/2022 23h00 
         // Ne marche toujours pas : je dois trouver la commande X avec ses produits et son client / fournisseur 
         
-        $maCommande = DB::table('details_commande')
-        ->where('commande_id' , '=' , '1')
+      //  $maCommande = DB::table('details_commande')
+        //->where('commande_id' , '=' , '1')
         //->select('quantite AS Quantité' , 'sous_total AS Sous Total' , 'nom_produit AS Nom' , 'prix AS Prix Unitaire')
-        ->join('produits' , 'produit_id' , 'produit_id')
-
-        
+        //->join('produits' , 'produit_id' , 'produit_id')  
+        // dd($maCommande);
+     
+        $maCommande ="3";
     
-        ->get();
+      
 
-        dd($maCommande);
 
         return View('commande.commande-liste' , [
             'maCommande' => $maCommande

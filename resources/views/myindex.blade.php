@@ -37,6 +37,23 @@ Il y'aura <b>5 pages</b> : </br> </br>
     - Notes : on en revient t oujours au même, la conception de la bdd est a chié : je galere a recupere les infos d'une commande seulement,
     alors que cela devrait être simple. </br>
      - Fichier CommandeController la fonction a la fin </br>
+
+     MAJ 08/12/2022 : </br>
+     - CICD presque fonctionelle ! </br>
+
+</br> </br>
+
+    MAJ : 13/12/2022 00h10 </br> 
+    - Réparation routes défectueuses </br> 
+    - Ajout fonctionalité dans liste commande : dernière commande Effectué </br> 
+    - CICD fonctionnelle !  </br> 
+    - A faire : page d'une commande , </br>
+    - A faire : page avec toutes les commandes dans un tableau </br>
+    
+</br></br> 
+    MAJ : 15/12/2022 : </br>
+    - Résultat de la requête d'une commande en double :  a résoudre </br>
+
     
 
 </p>

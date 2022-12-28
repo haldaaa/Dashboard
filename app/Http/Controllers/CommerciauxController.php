@@ -16,12 +16,22 @@ class CommerciauxController extends Controller
 
         $commerciaux = DB::select('select * from commerciaux');
 
-        return view('commerciaux', [
+        return view('commerciaux.index', [
             'commerciaux' => $commerciaux
 
         ]);
     }
 
+
+    public function liste_commerciaux()
+    {
+
+           // Ici on récupére toutes les commandes via la fonction créé dans me model Commerciaux
+           $test = new Commerciaux;
+           $liste =$test-> allCommande();
+
+           
+    }
 
 
 

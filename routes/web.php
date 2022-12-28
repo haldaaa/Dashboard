@@ -28,7 +28,7 @@ Route::get('/myindex', function() {
 
 
 
-Route::get('/commerciaux' , 'CommerciauxController@index') ->name('commerciaux');
+Route::get('/commerciaux' , 'CommerciauxController@index') ->name('liste-commerciaux');
 
 Route::get('/clients', 'ClientsController@index') ->name('client');
 
@@ -58,7 +58,7 @@ Route::get('/balais3', 'AppController@generateSell')->name('createVente');
 
 // Graphique
 
-Route::get('/commande-liste' , 'CommandeController@maCommande')->name('commande-liste');
+//Route::get('/commande-liste' , 'CommandeController@maCommande')->name('commande-liste');
 Route::get('/stats', 'AppController@stats')->name('stats');
 
 

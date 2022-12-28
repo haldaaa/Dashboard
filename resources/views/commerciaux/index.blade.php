@@ -1,6 +1,8 @@
+
 @extends ('layout')
 
 @section('contenu')
+
 
 @foreach ($commerciaux as $nom )
 <div class="card col-md-3">

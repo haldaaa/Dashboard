@@ -33,7 +33,7 @@
                 </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('commerciaux') }}">
+            <a class="nav-link" href="{{ route('liste-commerciaux') }}">
               <span data-feather="bar-chart-2" class="align-text-bottom"></span>
               Liste des commerciaux
             </a>
