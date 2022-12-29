@@ -127,17 +127,25 @@ class CommandeController extends Controller
        
         //->select('quantite AS Quantité' , 'nom_produit AS Nom article' , 'prix AS Prix de base' , 'nombre_vendu AS Total vente du produit ' )
         //->get();
-        dd($maCommande);
-        $vendeurCommande = $maCommande["0"]->Nom_vendeur;
-        $idLastCommande = $maCommande["0"]->Id_commande;
+      // 
+        $variable = "";
+
+
+        if ($maCommande->isEmpty())
+        {
+            $vendeurCommande = "Un VIDE";
+            $idLastCommande = " Une ID";
+        }
+        else
+        {
+            $vendeurCommande = $maCommande["0"]->Nom_vendeur;
+            $idLastCommande = $maCommande["0"]->Id_commande;
+        }
+
+       
+       // dd($maCommande);
+      
     
-
-            if(empty($maCommande))
-        { 
-           $vendeurCommande = "Un vendeur";
-           $idLastCommande = " Une ID";
-        } 
-
         
         // 17/12/2022 : 
         // Ou alors, on décompose : on recherche toute les commandes avec l'id souhaité dans détails commandes
