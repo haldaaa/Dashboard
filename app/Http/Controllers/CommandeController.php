@@ -106,30 +106,11 @@ class CommandeController extends Controller
     {
 
 
-        // Pareil, on viens juste rajouter un ptit push
+      
         // Ici on récupére toutes les commandes via la fonction créé dans me model Commerciaux
         $test = new Commerciaux;
         $liste =$test-> allCommande();
         
-
-        // Objectif : obtenir le détail d'une commande (produit, quantité, client/com) a partir d'un id
-        // Maj 10/12/2022 20h51 : Ici, on a le nom du vendeur et le total pour une commande donné
-
-        $maCommande = DB::table('commandes')
-        ->where('id' , '=' , '1')
-        ->join('commerciaux' , 'commercial_id' , 'commercial') 
-        ->select('id AS Id_commande' , 'commandes.created_at AS Création_commande' , 'nom AS Nom_vendeur' , 'total_vente AS Total commande')
-        ->get();
-
-        //$maCommande2 =  DB::table('details_commande')
-        //->where('commande_id' , '=' , '2')
-        //->join('produits' , 'produit_id' , 'produit_id')  
-       
-        //->select('quantite AS Quantité' , 'nom_produit AS Nom article' , 'prix AS Prix de base' , 'nombre_vendu AS Total vente du produit ' )
-        //->get();
-      // 
-        $variable = "";
-
 
         if ($maCommande->isEmpty())
         {
@@ -194,6 +175,42 @@ class CommandeController extends Controller
 
 
 
+    public function inspectCommande($idCommande)
+
+    {
+        
+        $maCommande2 =  DB::table('details_commande')
+        ->where('commande_id' , '=' , '1')
+        ->get();
+        $test = 0;
+        $collection = $maCommande2->all();
+        //dump($collection);
+       
+        
+        // Ici on parcourt maCommande2 qui liste toute les commandes pour un ID donné
+        // $valeur represente le premier tableau de maCommande2, soit le premier produit acheté
+        // $produit represente le produit selon l'id dans la table details_commandes 
+
+        foreach  ($maCommande2 as $valeur)
+        {
+           //dd($maCommande2);
+        
+
+            echo $valeur->quantite . " unités de : ";
+            $produit = Produits::find("$valeur->produit_id");
+            echo " " . $produit->nom_produit . " Sous-total : " . $valeur->sous_total . "</br>";
+           
+        
+        }
+
+    
+      
+        // 28/12
+        // Ici on récupere tout les ID des commandes pour le select dans la page commande-liste
+        // Par contre ici on récupere toute la table alors qu'on a besoin seulement de l'id, avoir plus tard
+
+        $commandeSelect = DB::select('select * from commandes');
+    }
 
 
 
