@@ -112,6 +112,26 @@ class CommandeController extends Controller
         $liste =$test-> allCommande();
         
 
+        
+        // Maj 10/12/2022 20h51 : Ici, on a le nom du vendeur et le total pour une commande donné
+
+        $lasteco
+        $maCommande = DB::table('commandes')
+        ->where('id' , '=' , '1')
+        ->join('commerciaux' , 'commercial_id' , 'commercial') 
+        ->select('id AS Id_commande' , 'commandes.created_at AS Création_commande' , 'nom AS Nom_vendeur' , 'total_vente AS Total commande')
+        ->get();
+
+        //$maCommande2 =  DB::table('details_commande')
+        //->where('commande_id' , '=' , '2')
+        //->join('produits' , 'produit_id' , 'produit_id')  
+       
+        //->select('quantite AS Quantité' , 'nom_produit AS Nom article' , 'prix AS Prix de base' , 'nombre_vendu AS Total vente du produit ' )
+        //->get();
+      // 
+        $variable = "";
+
+
         if ($maCommande->isEmpty())
         {
             $vendeurCommande = "Un VIDE";
