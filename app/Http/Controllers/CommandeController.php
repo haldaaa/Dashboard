@@ -115,7 +115,7 @@ class CommandeController extends Controller
         
         // Maj 10/12/2022 20h51 : Ici, on a le nom du vendeur et le total pour une commande donné
 
-        $lasteco
+        
         $maCommande = DB::table('commandes')
         ->where('id' , '=' , '1')
         ->join('commerciaux' , 'commercial_id' , 'commercial') 

@@ -47,11 +47,11 @@
         <p> Commande à inspecter : </p>
         
         @if(isset($commandeSelect))
-        <form action=" {{ route " method="POST">   
+      
           <select id="select" name="select_commandeId" class="custom-select " aria-describedby="selectHelpBlock">
 
             @foreach ($commandeSelect  as $nom )
-                <option value="{{ $nom -> id }} ">{{ $nom -> id }} </option>
+                <option value="{{ $nom -> id }} ">{{ $nom -> id }}  </option>
             @endforeach
           @endif
           
