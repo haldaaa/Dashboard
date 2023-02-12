@@ -53,9 +53,6 @@ class CommandeController extends Controller
         // Sauvegarde dans la table Commandes
         $table_commande->save();
 
-        // On récupére le tableau dans notre vue
-      //  $tableau = $request->tableau;
-
 
         // On boucle sur le tableau, en indiquant de continuer lorsque la quantité est = a 0
          foreach($request->tableau as $produit_id => $quantite)
@@ -81,8 +78,6 @@ class CommandeController extends Controller
                 }
                $table_detail->save();
             }
-
-
         // On incrémente le nombre de commande du Commercial
         $update_commande = Commerciaux::find("$request->select_commercial");
         $update_commande->nbre_commande = $update_commande->nbre_commande + 1 ;
@@ -105,16 +100,11 @@ class CommandeController extends Controller
     public function liste()
     {
 
-
-      
         // Ici on récupére toutes les commandes via la fonction créé dans me model Commerciaux
         $test = new Commerciaux;
         $liste =$test-> allCommande();
-        
 
-        
         // Maj 10/12/2022 20h51 : Ici, on a le nom du vendeur et le total pour une commande donné
-
         
         $maCommande = DB::table('commandes')
         ->where('id' , '=' , '1')
@@ -128,9 +118,7 @@ class CommandeController extends Controller
        
         //->select('quantite AS Quantité' , 'nom_produit AS Nom article' , 'prix AS Prix de base' , 'nombre_vendu AS Total vente du produit ' )
         //->get();
-      // 
-        $variable = "";
-
+   
 
         if ($maCommande->isEmpty())
         {
@@ -153,7 +141,7 @@ class CommandeController extends Controller
         // Et ensuite on voit :
 
         $maCommande2 =  DB::table('details_commande')
-        ->where('commande_id' , '=' , '1')
+        ->where('commande_id' , '=' , '2')
         ->get();
         $test = 0;
         $collection = $maCommande2->all();
@@ -166,17 +154,13 @@ class CommandeController extends Controller
 
         foreach  ($maCommande2 as $valeur)
         {
-           //dd($maCommande2);
-        
-
             echo $valeur->quantite . " unités de : ";
             $produit = Produits::find("$valeur->produit_id");
             echo " " . $produit->nom_produit . " Sous-total : " . $valeur->sous_total . "</br>";
-           
         
         }
 
-    
+        
       
         // 28/12
         // Ici on récupere tout les ID des commandes pour le select dans la page commande-liste
@@ -195,12 +179,12 @@ class CommandeController extends Controller
 
 
 
-    public function inspectCommande($idCommande)
+    public function inspectCommande($idCommande = "1")
 
     {
         
         $maCommande2 =  DB::table('details_commande')
-        ->where('commande_id' , '=' , '1')
+        ->where('commande_id' , '=' , '$idCommande')
         ->get();
         $test = 0;
         $collection = $maCommande2->all();
@@ -224,12 +208,7 @@ class CommandeController extends Controller
         }
 
     
-      
-        // 28/12
-        // Ici on récupere tout les ID des commandes pour le select dans la page commande-liste
-        // Par contre ici on récupere toute la table alors qu'on a besoin seulement de l'id, avoir plus tard
-
-        $commandeSelect = DB::select('select * from commandes');
+        return back()->with('succes' , 'La commande de a été ajouté');
     }
 
 

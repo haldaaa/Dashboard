@@ -47,7 +47,8 @@
         <p> Commande à inspecter : </p>
         
         @if(isset($commandeSelect))
-      
+     
+<form class="col-md-6" action="#" method="POST">
           <select id="select" name="select_commandeId" class="custom-select " aria-describedby="selectHelpBlock">
 
             @foreach ($commandeSelect  as $nom )

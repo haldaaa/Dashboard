@@ -46,6 +46,11 @@ Route::get('/commande-liste', 'CommandeController@liste')->name('commande-liste'
 
 Route::post('/commande-liste', 'CommandeController@liste')->name('commande-liste');
 
+// Route pour commande-liste quand on selectionne une commande a inspecter
+
+Route::get('/commande-liste2', 'CommandeController@inspectCommande')->name('commande-inspect');
+
+
 
 
 
