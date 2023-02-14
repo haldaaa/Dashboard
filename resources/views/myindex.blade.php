@@ -54,6 +54,13 @@ Il y'aura <b>5 pages</b> : </br> </br>
     MAJ : 15/12/2022 : </br>
     - Résultat de la requête d'une commande en double :  a résoudre </br>
 
+
+</br></br>
+ MAJ : 14/12/2022 : </br>
+  - Il faut travailler la foncttion inspectCommande@CommandeController </br>
+  - Finir le reste mais pour le moment on ferme le projet. </br> 
+
+
     
 
 </p>
